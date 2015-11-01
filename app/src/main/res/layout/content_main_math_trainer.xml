@@ -22,8 +22,7 @@
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/app_name"
             android:textSize="@dimen/button_text_size"
-            android:textColor="@color/colorText"
-            android:fontFamily=""/>
+            android:textColor="@color/colorText"/>
 
     </android.support.v7.widget.Toolbar>
 
