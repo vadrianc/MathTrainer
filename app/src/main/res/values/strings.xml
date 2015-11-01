@@ -5,4 +5,8 @@
     <string name="subtraction">Subtraction</string>
     <string name="multiplication">Multiplication</string>
     <string name="division">Division</string>
+    <string name="additionAction">add</string>
+    <string name="subtractionAction">subtract</string>
+    <string name="multiplyAction">multiply</string>
+    <string name="divideAction">divide</string>
 </resources>
