@@ -14,8 +14,7 @@
         android:textSize="36sp"
         android:layout_marginTop="@dimen/title_margin"
         android:layout_marginBottom="@dimen/title_margin"
-        android:textColor="@color/colorText"
-        />
+        android:textColor="@color/colorText"/>
 
     <Button
         android:text="@string/addition"
