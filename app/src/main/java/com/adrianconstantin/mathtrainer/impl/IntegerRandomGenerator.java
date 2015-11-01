@@ -11,7 +11,7 @@ public class IntegerRandomGenerator extends RandomGeneratorBase<Integer> {
      *
      * @param maximum limit for the generated integer.
      */
-    public IntegerRandomGenerator(Integer maximum)
+    public IntegerRandomGenerator(int maximum)
     {
         super(maximum);
     }
@@ -23,7 +23,7 @@ public class IntegerRandomGenerator extends RandomGeneratorBase<Integer> {
      *              which is maintained by method next(int).
      * @param maximum limit for the generated number.
      */
-    public IntegerRandomGenerator(long seed, Integer maximum)
+    public IntegerRandomGenerator(long seed, int maximum)
     {
         super(seed, maximum);
     }
