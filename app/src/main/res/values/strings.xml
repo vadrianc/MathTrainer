@@ -9,4 +9,5 @@
     <string name="subtractionAction">subtract</string>
     <string name="multiplyAction">multiply</string>
     <string name="divideAction">divide</string>
+    <string name="title_activity_operation_handler">Math Trainer</string>
 </resources>
