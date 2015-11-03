@@ -7,6 +7,18 @@ import java.util.List;
  */
 public interface IOperationHandler {
     /**
+     *
+     * @return
+     */
+    Double GetFirstOperand();
+
+    /**
+     *
+     * @return
+     */
+    Double GetSecondOperand();
+
+    /**
      * @return the operation type.
      */
     OperationType GetOperationType();

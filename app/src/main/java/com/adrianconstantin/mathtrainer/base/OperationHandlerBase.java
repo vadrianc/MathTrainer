@@ -67,4 +67,22 @@ public abstract class OperationHandlerBase implements IOperationHandler {
     public int GetNumberOfOperands() {
         return mOperandCount;
     }
+
+    /**
+     *
+     * @return
+     */
+    public Double GetFirstOperand()
+    {
+        return mFirstOperand;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Double GetSecondOperand()
+    {
+        return mSecondOperand;
+    }
 }
