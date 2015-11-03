@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="top|center_horizontal"
-    android:background="@drawable/math_paper_background">
+    android:gravity="top|center_horizontal">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/math_trainer_toolbar"
@@ -21,7 +20,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/app_name"
-            android:textSize="@dimen/button_text_size"
+            android:textSize="@dimen/title_text_size"
             android:textColor="@color/colorTextTitle"/>
 
     </android.support.v7.widget.Toolbar>
