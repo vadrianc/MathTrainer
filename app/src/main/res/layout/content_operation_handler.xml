@@ -27,5 +27,6 @@
         android:singleLine="true"
         android:gravity="center_horizontal"
         android:textSize="@dimen/operation_text_size"
-        android:maxLength="10"/>
+        android:maxLength="10"
+        android:inputType="number"/>
 </LinearLayout>
