@@ -110,4 +110,20 @@ public abstract class OperationHandlerBase implements IOperationHandler {
     public void SetSecondOperand(Double value){
         mSecondOperand = value;
     }
+
+    /**
+     *
+     * @return
+     */
+    public String GetExpression(){
+        StringBuilder expression = new StringBuilder();
+
+        expression.append(mFirstOperand);
+        expression.append(' ');
+        expression.append(GetOperationSymbol());
+        expression.append(' ');
+        expression.append(mSecondOperand);
+
+        return expression.toString();
+    }
 }

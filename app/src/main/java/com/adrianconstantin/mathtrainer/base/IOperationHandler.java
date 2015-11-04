@@ -49,4 +49,10 @@ public interface IOperationHandler {
      * @return operation symbol.
      */
     char GetOperationSymbol();
+
+    /**
+     *
+     * @return
+     */
+    String GetExpression();
 }
