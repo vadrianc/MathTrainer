@@ -14,17 +14,11 @@ import java.util.List;
  * Created by AdrianConstantin on 10/28/2015.
  */
 public class AdditionHandler extends OperationHandlerBase implements Parcelable {
-    public AdditionHandler() {
-
-    }
-
     /**
      *
-     * @param firstOperand
-     * @param secondOperand
      */
-    public AdditionHandler(Double firstOperand, Double secondOperand) {
-        super(firstOperand, secondOperand);
+    public AdditionHandler() {
+
     }
 
     protected AdditionHandler(Parcel in) {

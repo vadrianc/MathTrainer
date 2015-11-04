@@ -13,17 +13,8 @@ public class MultiplicationHandler extends OperationHandlerBase implements Parce
     /**
      *
      */
-    public MultiplicationHandler(){
+    public MultiplicationHandler() {
 
-    }
-
-    /**
-     *
-     * @param firstOperand
-     * @param secondOperand
-     */
-    public MultiplicationHandler(Double firstOperand, Double secondOperand) {
-        super(firstOperand, secondOperand);
     }
 
     protected MultiplicationHandler(Parcel in) {

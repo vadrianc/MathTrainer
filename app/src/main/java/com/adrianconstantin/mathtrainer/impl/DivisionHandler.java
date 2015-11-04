@@ -17,15 +17,6 @@ public class DivisionHandler extends OperationHandlerBase implements Parcelable 
 
     }
 
-    /**
-     *
-     * @param firstOperand
-     * @param secondOperand
-     */
-    public DivisionHandler(Double firstOperand, Double secondOperand) {
-        super(firstOperand, secondOperand);
-    }
-
     protected DivisionHandler(Parcel in) {
     }
 

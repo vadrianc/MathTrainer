@@ -20,15 +20,6 @@ public class SubstractionHandler extends OperationHandlerBase implements Parcela
 
     }
 
-    /**
-     *
-     * @param firstOperand
-     * @param secondOperand
-     */
-    public SubstractionHandler(Double firstOperand, Double secondOperand) {
-        super(firstOperand, secondOperand);
-    }
-
     protected SubstractionHandler(Parcel in) {
     }
 

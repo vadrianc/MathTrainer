@@ -92,4 +92,22 @@ public abstract class OperationHandlerBase implements IOperationHandler {
     {
         return mSecondOperand;
     }
+
+    /**
+     *
+     * @param value
+     */
+    @Override
+    public void SetFirstOperand(Double value) {
+        mFirstOperand = value;
+    }
+
+    /**
+     *
+     * @param value
+     */
+    @Override
+    public void SetSecondOperand(Double value){
+        mSecondOperand = value;
+    }
 }

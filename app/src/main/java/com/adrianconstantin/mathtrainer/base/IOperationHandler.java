@@ -19,6 +19,18 @@ public interface IOperationHandler {
     Double GetSecondOperand();
 
     /**
+     *
+     * @param value
+     */
+    void SetFirstOperand(Double value);
+
+    /**
+     *
+     * @param value
+     */
+    void SetSecondOperand(Double value);
+
+    /**
      * @return the operation type.
      */
     OperationType GetOperationType();
