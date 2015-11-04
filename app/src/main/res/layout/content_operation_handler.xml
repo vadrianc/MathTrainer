@@ -9,5 +9,9 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_operation_handler"
     tools:context="com.adrianconstantin.mathtrainer.activity.OperationHandlerActivity">
-
+    <TextView
+        android:id="@+id/char_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hahaha"/>
 </RelativeLayout>

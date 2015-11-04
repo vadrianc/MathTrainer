@@ -2,8 +2,6 @@ package com.adrianconstantin.mathtrainer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,6 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.adrianconstantin.mathtrainer.R;
+import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
+import com.adrianconstantin.mathtrainer.impl.AdditionHandler;
+import com.adrianconstantin.mathtrainer.impl.DivisionHandler;
+import com.adrianconstantin.mathtrainer.impl.MultiplicationHandler;
+import com.adrianconstantin.mathtrainer.impl.SubstractionHandler;
+import com.adrianconstantin.mathtrainer.utils.Utils;
 
 public class MainMathTrainer extends AppCompatActivity {
 
@@ -37,8 +41,33 @@ public class MainMathTrainer extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void ButtonClickEvent(View view) {
+    /**
+     *
+     * @param view
+     */
+    public void ButtonClickEvent(View view) throws UnknownOperationException {
         Intent intent = new Intent(this, OperationHandlerActivity.class);
+        Bundle bundle = new Bundle();
+
+        switch (view.getId())
+        {
+            case R.id.buttonAddition:
+                bundle.putParcelable(Utils.OPERATION, new AdditionHandler());
+                break;
+            case R.id.buttonSubtraction:
+                bundle.putParcelable(Utils.OPERATION, new SubstractionHandler());
+                break;
+            case R.id.buttonMultiplication:
+                bundle.putParcelable(Utils.OPERATION, new MultiplicationHandler());
+                break;
+            case R.id.buttonDivision:
+                bundle.putParcelable(Utils.OPERATION, new DivisionHandler());
+                break;
+            default:
+                throw new UnknownOperationException();
+        }
+        intent.putExtras(bundle);
+
         startActivity(intent);
     }
 }

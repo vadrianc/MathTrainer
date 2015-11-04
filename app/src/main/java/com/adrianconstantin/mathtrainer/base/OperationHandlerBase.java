@@ -24,6 +24,13 @@ public abstract class OperationHandlerBase implements IOperationHandler {
     /**
      *
      */
+    public OperationHandlerBase()
+    {
+    }
+
+    /**
+     *
+     */
     public OperationHandlerBase(Double firstOperand)
     {
         mFirstOperand = firstOperand;

@@ -7,5 +7,5 @@ public class Utils {
     /**
      * Operation type constant.
      */
-    public static final String OPERATION_TYPE = "Operation Type";
+    public static final String OPERATION = "Operation";
 }
