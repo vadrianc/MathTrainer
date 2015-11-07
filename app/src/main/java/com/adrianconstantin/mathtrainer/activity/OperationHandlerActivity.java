@@ -43,6 +43,9 @@ public class OperationHandlerActivity extends AppCompatActivity {
         populateTextView();
     }
 
+    /**
+     *
+     */
     private void init()
     {
         mRandomGenerator = new IntegerRandomGenerator(100);
@@ -66,6 +69,20 @@ public class OperationHandlerActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     */
+    private void handleTextChange(EditText resultEditText)
+    {
+        int userInput = Integer.getInteger(resultEditText.getText().toString());
+
+    }
+
+    /**
+     *
+     * @return
+     * @throws UnknownOperationException
+     */
     private IOperationHandler handleIntent() throws UnknownOperationException {
         Intent intent = getIntent();
         mOperationHandler  = intent.getExtras().getParcelable(Utils.OPERATION);
@@ -78,11 +95,17 @@ public class OperationHandlerActivity extends AppCompatActivity {
         return mOperationHandler;
     }
 
+    /**
+     *
+     */
     private void generateOperands() {
         mOperationHandler.SetFirstOperand(mRandomGenerator.Generate().doubleValue());
         mOperationHandler.SetSecondOperand(mRandomGenerator.Generate().doubleValue());
     }
 
+    /**
+     *
+     */
     private void populateTextView(){
         generateOperands();
 

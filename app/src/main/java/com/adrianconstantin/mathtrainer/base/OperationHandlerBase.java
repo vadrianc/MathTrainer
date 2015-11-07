@@ -5,21 +5,26 @@ import java.util.List;
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
-public abstract class OperationHandlerBase implements IOperationHandler {
+public abstract class OperationHandlerBase<T extends Number> implements IOperationHandler<T> {
     /**
      * First operand.
      */
-    protected Double mFirstOperand;
+    protected T mFirstOperand;
 
     /**
      * Second operand.
      */
-    protected Double mSecondOperand;
+    protected T mSecondOperand;
 
     /**
      *
      */
     protected int mOperandCount;
+
+    /**
+     *
+     */
+    protected IRandomGenerator<T> mRandomGenerator;
 
     /**
      *
@@ -31,7 +36,7 @@ public abstract class OperationHandlerBase implements IOperationHandler {
     /**
      *
      */
-    public OperationHandlerBase(Double firstOperand)
+    public OperationHandlerBase(T firstOperand)
     {
         mFirstOperand = firstOperand;
 
@@ -41,7 +46,7 @@ public abstract class OperationHandlerBase implements IOperationHandler {
     /**
      *
      */
-    public OperationHandlerBase(Double firstOperand, Double secondOperand)
+    public OperationHandlerBase(T firstOperand, T secondOperand)
     {
         mFirstOperand = firstOperand;
         mSecondOperand = secondOperand;
@@ -59,7 +64,13 @@ public abstract class OperationHandlerBase implements IOperationHandler {
      * @return result of the operation.
      */
     @Override
-    public abstract double ExecuteOperation();
+    public abstract T ExecuteOperation();
+
+    /**
+     *
+     * @return
+     */
+    protected abstract boolean CanExecute();
 
     /**
      * @return operation symbol.
@@ -79,7 +90,7 @@ public abstract class OperationHandlerBase implements IOperationHandler {
      *
      * @return
      */
-    public Double GetFirstOperand()
+    public T GetFirstOperand()
     {
         return mFirstOperand;
     }
@@ -88,7 +99,7 @@ public abstract class OperationHandlerBase implements IOperationHandler {
      *
      * @return
      */
-    public Double GetSecondOperand()
+    public T GetSecondOperand()
     {
         return mSecondOperand;
     }
@@ -98,7 +109,7 @@ public abstract class OperationHandlerBase implements IOperationHandler {
      * @param value
      */
     @Override
-    public void SetFirstOperand(Double value) {
+    public void SetFirstOperand(T value) {
         mFirstOperand = value;
     }
 
@@ -107,7 +118,7 @@ public abstract class OperationHandlerBase implements IOperationHandler {
      * @param value
      */
     @Override
-    public void SetSecondOperand(Double value){
+    public void SetSecondOperand(T value){
         mSecondOperand = value;
     }
 
@@ -118,12 +129,20 @@ public abstract class OperationHandlerBase implements IOperationHandler {
     public String GetExpression(){
         StringBuilder expression = new StringBuilder();
 
-        expression.append(mFirstOperand);
+        expression.append(mFirstOperand.intValue());
         expression.append(' ');
         expression.append(GetOperationSymbol());
         expression.append(' ');
-        expression.append(mSecondOperand);
+        expression.append(mSecondOperand.intValue());
 
         return expression.toString();
+    }
+
+    public void SetRandomGenerator(IRandomGenerator<T> generator) {
+        mRandomGenerator = generator;
+    }
+
+    private void generateOperands() {
+        mFirstOperand = mRandomGenerator.Generate();
     }
 }

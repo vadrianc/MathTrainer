@@ -10,10 +10,14 @@ import android.view.MenuItem;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
-import com.adrianconstantin.mathtrainer.impl.AdditionHandler;
-import com.adrianconstantin.mathtrainer.impl.DivisionHandler;
-import com.adrianconstantin.mathtrainer.impl.MultiplicationHandler;
-import com.adrianconstantin.mathtrainer.impl.SubstractionHandler;
+import com.adrianconstantin.mathtrainer.base.AdditionHandlerBase;
+import com.adrianconstantin.mathtrainer.base.DivisionHandlerBase;
+import com.adrianconstantin.mathtrainer.base.MultiplicationHandlerBase;
+import com.adrianconstantin.mathtrainer.base.SubstractionHandlerBase;
+import com.adrianconstantin.mathtrainer.operation.IntegerAdditionHandler;
+import com.adrianconstantin.mathtrainer.operation.IntegerDivisionHandler;
+import com.adrianconstantin.mathtrainer.operation.IntegerMultiplicationHandler;
+import com.adrianconstantin.mathtrainer.operation.IntegerSubtractionHanlder;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
 public class MainMathTrainer extends AppCompatActivity {
@@ -52,16 +56,16 @@ public class MainMathTrainer extends AppCompatActivity {
         switch (view.getId())
         {
             case R.id.buttonAddition:
-                bundle.putParcelable(Utils.OPERATION, new AdditionHandler());
+                bundle.putParcelable(Utils.OPERATION, new IntegerAdditionHandler());
                 break;
             case R.id.buttonSubtraction:
-                bundle.putParcelable(Utils.OPERATION, new SubstractionHandler());
+                bundle.putParcelable(Utils.OPERATION, new IntegerSubtractionHanlder());
                 break;
             case R.id.buttonMultiplication:
-                bundle.putParcelable(Utils.OPERATION, new MultiplicationHandler());
+                bundle.putParcelable(Utils.OPERATION, new IntegerMultiplicationHandler());
                 break;
             case R.id.buttonDivision:
-                bundle.putParcelable(Utils.OPERATION, new DivisionHandler());
+                bundle.putParcelable(Utils.OPERATION, new IntegerDivisionHandler());
                 break;
             default:
                 throw new UnknownOperationException();

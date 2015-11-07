@@ -5,30 +5,30 @@ import java.util.List;
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
-public interface IOperationHandler {
+public interface IOperationHandler<T extends Number> {
     /**
      *
      * @return
      */
-    Double GetFirstOperand();
+    T GetFirstOperand();
 
     /**
      *
      * @return
      */
-    Double GetSecondOperand();
+    T GetSecondOperand();
 
     /**
      *
      * @param value
      */
-    void SetFirstOperand(Double value);
+    void SetFirstOperand(T value);
 
     /**
      *
      * @param value
      */
-    void SetSecondOperand(Double value);
+    void SetSecondOperand(T value);
 
     /**
      * @return the operation type.
@@ -38,7 +38,7 @@ public interface IOperationHandler {
     /**
      * @return result of the operation.
      */
-    double ExecuteOperation();
+    T ExecuteOperation();
 
     /**
      * @return the number of operands.
@@ -55,4 +55,10 @@ public interface IOperationHandler {
      * @return
      */
     String GetExpression();
+
+    /**
+     *
+     * @param generator
+     */
+    void SetRandomGenerator(IRandomGenerator<T> generator);
 }
