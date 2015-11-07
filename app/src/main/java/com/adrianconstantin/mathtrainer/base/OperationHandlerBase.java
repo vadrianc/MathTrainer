@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
-public abstract class OperationHandlerBase<T extends Number> implements IOperationHandler<T> {
+public abstract class OperationHandlerBase<T extends Number, R extends IRandomGenerator<T>> implements IOperationHandler<T, R> {
     /**
      * First operand.
      */
@@ -24,7 +24,7 @@ public abstract class OperationHandlerBase<T extends Number> implements IOperati
     /**
      *
      */
-    protected IRandomGenerator<T> mRandomGenerator;
+    protected R mRandomGenerator;
 
     /**
      *
@@ -77,6 +77,11 @@ public abstract class OperationHandlerBase<T extends Number> implements IOperati
      */
     @Override
     public abstract char GetOperationSymbol();
+
+    /**
+     *
+     */
+    public abstract void GenerateOperands();
 
     /**
      * @return the number of operands.
@@ -138,11 +143,11 @@ public abstract class OperationHandlerBase<T extends Number> implements IOperati
         return expression.toString();
     }
 
-    public void SetRandomGenerator(IRandomGenerator<T> generator) {
+    /**
+     *
+     * @param generator
+     */
+    public void SetRandomGenerator(R generator) {
         mRandomGenerator = generator;
-    }
-
-    private void generateOperands() {
-        mFirstOperand = mRandomGenerator.Generate();
     }
 }

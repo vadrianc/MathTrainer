@@ -19,7 +19,6 @@ import com.adrianconstantin.mathtrainer.utils.Utils;
 public class OperationHandlerActivity extends AppCompatActivity {
 
     IOperationHandler mOperationHandler = null;
-    IRandomGenerator<Integer> mRandomGenerator = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +44,6 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     private void init()
     {
-        mRandomGenerator = new IntegerRandomGenerator(100);
-
         EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
         resultEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -95,17 +92,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
     /**
      *
      */
-    private void generateOperands() {
-        mOperationHandler.SetFirstOperand(mRandomGenerator.Generate().doubleValue());
-        mOperationHandler.SetSecondOperand(mRandomGenerator.Generate().doubleValue());
-    }
-
-    /**
-     *
-     */
     private void populateTextView(){
-        generateOperands();
-
         TextView charTextView = (TextView)findViewById(R.id.char_text);
         charTextView.setText(mOperationHandler.GetExpression());
     }

@@ -4,11 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.adrianconstantin.mathtrainer.base.MultiplicationHandlerBase;
+import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
 
 /**
  * Created by AdrianConstantin on 11/7/2015.
  */
-public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Integer> implements Parcelable{
+public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Integer, IntegerRandomGenerator> implements Parcelable{
     /**
      *
      */
@@ -54,6 +55,14 @@ public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Inte
     @Override
     protected boolean CanExecute() {
         return false;
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void GenerateOperands() {
+
     }
 
     /**

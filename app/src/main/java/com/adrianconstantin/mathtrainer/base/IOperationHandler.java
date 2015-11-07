@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
-public interface IOperationHandler<T extends Number> {
+public interface IOperationHandler<T extends Number, R extends IRandomGenerator<T>> {
     /**
      *
      * @return
@@ -58,7 +58,12 @@ public interface IOperationHandler<T extends Number> {
 
     /**
      *
+     */
+    public void GenerateOperands();
+
+    /**
+     *
      * @param generator
      */
-    void SetRandomGenerator(IRandomGenerator<T> generator);
+    void SetRandomGenerator(R generator);
 }

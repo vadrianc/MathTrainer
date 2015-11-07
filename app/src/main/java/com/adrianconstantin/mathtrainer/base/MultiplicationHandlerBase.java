@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
-public abstract class MultiplicationHandlerBase<T extends Number> extends OperationHandlerBase<T> {
+public abstract class MultiplicationHandlerBase<T extends Number, R extends IRandomGenerator<T>> extends OperationHandlerBase<T, R> {
     /**
      *
      */

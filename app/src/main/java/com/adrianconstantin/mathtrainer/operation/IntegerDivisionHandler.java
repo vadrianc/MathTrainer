@@ -4,11 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.adrianconstantin.mathtrainer.base.DivisionHandlerBase;
+import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
 
 /**
  * Created by AdrianConstantin on 11/7/2015.
  */
-public class IntegerDivisionHandler extends DivisionHandlerBase<Integer> implements Parcelable {
+public class IntegerDivisionHandler extends DivisionHandlerBase<Integer, IntegerRandomGenerator> implements Parcelable {
     /**
      *
      */
@@ -21,6 +22,8 @@ public class IntegerDivisionHandler extends DivisionHandlerBase<Integer> impleme
      * @param in
      */
     protected IntegerDivisionHandler(Parcel in) {
+        mFirstOperand = in.readInt();
+        mSecondOperand = in.readInt();
     }
 
     /**
@@ -43,7 +46,7 @@ public class IntegerDivisionHandler extends DivisionHandlerBase<Integer> impleme
      */
     @Override
     public Integer ExecuteOperation() {
-        return null;
+        return mFirstOperand / mSecondOperand;
     }
 
     /**
@@ -52,6 +55,14 @@ public class IntegerDivisionHandler extends DivisionHandlerBase<Integer> impleme
     @Override
     protected boolean CanExecute() {
         return false;
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void GenerateOperands() {
+
     }
 
     /**
