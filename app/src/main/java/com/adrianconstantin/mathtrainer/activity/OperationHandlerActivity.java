@@ -2,13 +2,10 @@ package com.adrianconstantin.mathtrainer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,7 +13,7 @@ import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.base.IOperationHandler;
 import com.adrianconstantin.mathtrainer.base.IRandomGenerator;
 import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
-import com.adrianconstantin.mathtrainer.impl.IntegerRandomGenerator;
+import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
 public class OperationHandlerActivity extends AppCompatActivity {

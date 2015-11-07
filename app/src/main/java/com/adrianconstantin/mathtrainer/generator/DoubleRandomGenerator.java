@@ -1,4 +1,4 @@
-package com.adrianconstantin.mathtrainer.impl;
+package com.adrianconstantin.mathtrainer.generator;
 
 import com.adrianconstantin.mathtrainer.base.RandomGeneratorBase;
 
