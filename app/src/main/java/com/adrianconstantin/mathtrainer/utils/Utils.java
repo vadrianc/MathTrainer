@@ -26,6 +26,6 @@ public class Utils {
             maxBuilder.append(BASE_FOR_MAX);
         }
 
-        return Integer.parseInt(maxBuilder.toString()) + 1;
+        return Integer.parseInt(maxBuilder.toString());
     }
 }
