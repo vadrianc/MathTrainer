@@ -1,11 +1,12 @@
 package com.adrianconstantin.mathtrainer.base;
 
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
-public abstract class OperationHandlerBase<T extends Number, R extends IRandomGenerator<T>> implements IOperationHandler<T, R> {
+public abstract class OperationHandlerBase<T extends Number, R extends IRandomGenerator<T>, P extends OperandParserBase<T>>
+        implements IOperationHandler<T, R> {
     /**
      * First operand.
      */
@@ -29,8 +30,13 @@ public abstract class OperationHandlerBase<T extends Number, R extends IRandomGe
     /**
      *
      */
-    public OperationHandlerBase()
-    {
+    protected P mOperandParser;
+
+    /**
+     *
+     */
+    public OperationHandlerBase() {
+
     }
 
     /**
@@ -131,14 +137,14 @@ public abstract class OperationHandlerBase<T extends Number, R extends IRandomGe
      *
      * @return
      */
-    public String GetExpression(){
+    public String GetExpression() {
         StringBuilder expression = new StringBuilder();
 
-        expression.append(mFirstOperand.intValue());
+        expression.append(mOperandParser.GetFirstOperandString());
         expression.append(' ');
         expression.append(GetOperationSymbol());
         expression.append(' ');
-        expression.append(mSecondOperand.intValue());
+        expression.append(mOperandParser.GetSecondOperandString());
 
         return expression.toString();
     }

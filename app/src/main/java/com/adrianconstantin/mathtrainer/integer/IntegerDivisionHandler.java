@@ -1,4 +1,4 @@
-package com.adrianconstantin.mathtrainer.operation;
+package com.adrianconstantin.mathtrainer.integer;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,11 +9,12 @@ import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
 /**
  * Created by AdrianConstantin on 11/7/2015.
  */
-public class IntegerDivisionHandler extends DivisionHandlerBase<Integer, IntegerRandomGenerator> implements Parcelable {
+public class IntegerDivisionHandler extends DivisionHandlerBase<Integer, IntegerRandomGenerator, IntegerOperandParser>
+        implements Parcelable {
     /**
      *
      */
-    public IntegerDivisionHandler(){
+    public IntegerDivisionHandler() {
         super();
     }
 
@@ -22,6 +23,7 @@ public class IntegerDivisionHandler extends DivisionHandlerBase<Integer, Integer
      * @param in
      */
     protected IntegerDivisionHandler(Parcel in) {
+        this();
         mFirstOperand = in.readInt();
         mSecondOperand = in.readInt();
     }

@@ -6,13 +6,14 @@ import android.os.Parcelable;
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
-public abstract class DivisionHandlerBase<T extends Number, R extends IRandomGenerator<T>> extends OperationHandlerBase<T, R> {
+public abstract class DivisionHandlerBase<T extends Number, R extends IRandomGenerator<T>, P extends OperandParserBase<T>>
+        extends OperationHandlerBase<T, R, P> {
     /**
      *
      */
     public DivisionHandlerBase() {
-
-    }
+        super();
+}
 
     /**
      * @return the operation type.

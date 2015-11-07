@@ -10,14 +10,10 @@ import android.view.MenuItem;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
-import com.adrianconstantin.mathtrainer.base.AdditionHandlerBase;
-import com.adrianconstantin.mathtrainer.base.DivisionHandlerBase;
-import com.adrianconstantin.mathtrainer.base.MultiplicationHandlerBase;
-import com.adrianconstantin.mathtrainer.base.SubstractionHandlerBase;
-import com.adrianconstantin.mathtrainer.operation.IntegerAdditionHandler;
-import com.adrianconstantin.mathtrainer.operation.IntegerDivisionHandler;
-import com.adrianconstantin.mathtrainer.operation.IntegerMultiplicationHandler;
-import com.adrianconstantin.mathtrainer.operation.IntegerSubtractionHanlder;
+import com.adrianconstantin.mathtrainer.integer.IntegerAdditionHandler;
+import com.adrianconstantin.mathtrainer.integer.IntegerDivisionHandler;
+import com.adrianconstantin.mathtrainer.integer.IntegerMultiplicationHandler;
+import com.adrianconstantin.mathtrainer.integer.IntegerSubtractionHanlder;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
 public class MainMathTrainer extends AppCompatActivity {
@@ -49,7 +45,7 @@ public class MainMathTrainer extends AppCompatActivity {
      *
      * @param view
      */
-    public void ButtonClickEvent(View view) throws UnknownOperationException {
+    public void ButtonClickEvent(View view) throws UnknownOperationException, IllegalAccessException, InstantiationException {
         Intent intent = new Intent(this, OperationHandlerActivity.class);
         Bundle bundle = new Bundle();
 

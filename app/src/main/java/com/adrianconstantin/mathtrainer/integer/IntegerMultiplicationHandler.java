@@ -1,4 +1,4 @@
-package com.adrianconstantin.mathtrainer.operation;
+package com.adrianconstantin.mathtrainer.integer;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,11 +9,12 @@ import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
 /**
  * Created by AdrianConstantin on 11/7/2015.
  */
-public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Integer, IntegerRandomGenerator> implements Parcelable{
+public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Integer, IntegerRandomGenerator, IntegerOperandParser>
+        implements Parcelable{
     /**
      *
      */
-    public IntegerMultiplicationHandler(){
+    public IntegerMultiplicationHandler() {
         super();
     }
 
@@ -21,7 +22,8 @@ public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Inte
      *
      * @param in
      */
-    protected IntegerMultiplicationHandler(Parcel in) {
+    protected IntegerMultiplicationHandler(Parcel in) throws InstantiationException, IllegalAccessException {
+        this();
         mFirstOperand = in.readInt();
         mSecondOperand = in.readInt();
     }
@@ -32,7 +34,15 @@ public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Inte
     public static final Creator<IntegerMultiplicationHandler> CREATOR = new Creator<IntegerMultiplicationHandler>() {
         @Override
         public IntegerMultiplicationHandler createFromParcel(Parcel in) {
-            return new IntegerMultiplicationHandler(in);
+            try {
+                return new IntegerMultiplicationHandler(in);
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            return null;
         }
 
         @Override
