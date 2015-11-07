@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.adrianconstantin.mathtrainer.base.DivisionHandlerBase;
 import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
+import com.adrianconstantin.mathtrainer.setting.OperationSettings;
+import com.adrianconstantin.mathtrainer.utils.Utils;
 
 /**
  * Created by AdrianConstantin on 11/7/2015.
@@ -16,6 +18,9 @@ public class IntegerDivisionHandler extends DivisionHandlerBase<Integer, Integer
      */
     public IntegerDivisionHandler() {
         super();
+        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
+        GenerateOperands();
+        mOperandParser = new IntegerOperandParser(this);
     }
 
     /**
@@ -64,7 +69,10 @@ public class IntegerDivisionHandler extends DivisionHandlerBase<Integer, Integer
      */
     @Override
     public void GenerateOperands() {
-
+        do {
+            mFirstOperand = mRandomGenerator.Generate();
+            mSecondOperand = mRandomGenerator.Generate();
+        }while (mSecondOperand == 0 || mFirstOperand % mSecondOperand != 0);
     }
 
     /**

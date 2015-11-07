@@ -47,4 +47,12 @@ public abstract class RandomGeneratorBase<T extends Number> implements IRandomGe
      */
     @Override
     public abstract T Generate();
+
+    /**
+     *
+     * @return
+     */
+    public int GetMaximum(){
+        return mMaximum;
+    }
 }

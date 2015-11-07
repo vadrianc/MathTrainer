@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.adrianconstantin.mathtrainer.base.MultiplicationHandlerBase;
 import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
+import com.adrianconstantin.mathtrainer.setting.OperationSettings;
+import com.adrianconstantin.mathtrainer.utils.Utils;
 
 /**
  * Created by AdrianConstantin on 11/7/2015.
@@ -16,6 +18,9 @@ public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Inte
      */
     public IntegerMultiplicationHandler() {
         super();
+        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
+        GenerateOperands();
+        mOperandParser = new IntegerOperandParser(this);
     }
 
     /**
@@ -72,7 +77,10 @@ public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Inte
      */
     @Override
     public void GenerateOperands() {
-
+        do {
+            mFirstOperand = mRandomGenerator.Generate();
+            mSecondOperand = mRandomGenerator.Generate();
+        }while (ExecuteOperation() > mRandomGenerator.GetMaximum());
     }
 
     /**
