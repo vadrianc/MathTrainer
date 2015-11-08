@@ -20,17 +20,18 @@ public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Inte
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
         GenerateOperands();
-        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**
      *
      * @param in
      */
-    protected NaturalMultiplicationHandler(Parcel in) throws InstantiationException, IllegalAccessException {
-        this();
+    protected NaturalMultiplicationHandler(Parcel in) {
+        super();
         mFirstOperand = in.readInt();
         mSecondOperand = in.readInt();
+        mOperandParser = new NaturalOperandParser(this);
+        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
     }
 
     /**
@@ -39,15 +40,7 @@ public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Inte
     public static final Creator<NaturalMultiplicationHandler> CREATOR = new Creator<NaturalMultiplicationHandler>() {
         @Override
         public NaturalMultiplicationHandler createFromParcel(Parcel in) {
-            try {
-                return new NaturalMultiplicationHandler(in);
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-
-            return null;
+            return new NaturalMultiplicationHandler(in);
         }
 
         @Override
@@ -81,6 +74,8 @@ public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Inte
             mFirstOperand = mRandomGenerator.Generate();
             mSecondOperand = mRandomGenerator.Generate();
         }while (ExecuteOperation() > mRandomGenerator.GetMaximum());
+
+        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**
@@ -104,5 +99,7 @@ public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Inte
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mFirstOperand);
+        dest.writeInt(mSecondOperand);
     }
 }

@@ -20,7 +20,6 @@ public class NaturalAdditionHandler extends AdditionHandlerBase<Integer, Integer
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
         GenerateOperands();
-        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**
@@ -28,9 +27,11 @@ public class NaturalAdditionHandler extends AdditionHandlerBase<Integer, Integer
      * @param in
      */
     public NaturalAdditionHandler(Parcel in) {
-        this();
+        super();
         mFirstOperand = in.readInt();
         mSecondOperand = in.readInt();
+        mOperandParser = new NaturalOperandParser(this);
+        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
     }
 
     /**
@@ -73,6 +74,8 @@ public class NaturalAdditionHandler extends AdditionHandlerBase<Integer, Integer
             mFirstOperand = mRandomGenerator.Generate();
             mSecondOperand = mRandomGenerator.Generate();
         }while (ExecuteOperation() > mRandomGenerator.GetMaximum());
+
+        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**
@@ -96,5 +99,7 @@ public class NaturalAdditionHandler extends AdditionHandlerBase<Integer, Integer
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mFirstOperand);
+        dest.writeInt(mSecondOperand);
     }
 }

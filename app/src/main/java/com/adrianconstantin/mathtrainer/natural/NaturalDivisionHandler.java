@@ -20,7 +20,6 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
         GenerateOperands();
-        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**
@@ -28,9 +27,11 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
      * @param in
      */
     protected NaturalDivisionHandler(Parcel in) {
-        this();
+        super();
         mFirstOperand = in.readInt();
         mSecondOperand = in.readInt();
+        mOperandParser = new NaturalOperandParser(this);
+        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
     }
 
     /**
@@ -101,6 +102,8 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
                 mFirstOperand % mSecondOperand != 0);
 
         mRandomGenerator.SetMaximum(tempMax);
+
+        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**
@@ -124,5 +127,7 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mFirstOperand);
+        dest.writeInt(mSecondOperand);
     }
 }

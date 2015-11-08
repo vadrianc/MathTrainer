@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,7 +46,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     private void init()
     {
-        EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
+        final EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
         resultEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -58,7 +60,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                handleTextChange(resultEditText);
             }
         });
     }
@@ -68,8 +70,23 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     private void handleTextChange(EditText resultEditText)
     {
-        int userInput = Integer.getInteger(resultEditText.getText().toString());
+        if (resultEditText.getText() == null || resultEditText.getText().toString().equals("")) return;
 
+        int resultLength = mOperationHandler.ExecuteOperation().toString().length();
+        int inputLength = resultEditText.getText().length();
+        int userInput = Integer.parseInt(resultEditText.getText().toString());
+
+        boolean lengthsAreEqual = resultLength == inputLength;
+        boolean valuesAreEqual = (Integer)mOperationHandler.ExecuteOperation() == userInput;
+
+        if (valuesAreEqual) {
+            mOperationHandler.GenerateOperands();
+            populateTextView();
+            resultEditText.getText().clear();
+        }
+        else if (lengthsAreEqual){
+            // display warning
+        }
     }
 
     /**
@@ -95,6 +112,12 @@ public class OperationHandlerActivity extends AppCompatActivity {
     private void populateTextView(){
         TextView charTextView = (TextView)findViewById(R.id.char_text);
         charTextView.setText(mOperationHandler.GetExpression());
-    }
 
+        TextView resultEditText = (TextView)findViewById(R.id.resultEditText);
+
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter.LengthFilter(mOperationHandler.ExecuteOperation().toString().length());
+
+        resultEditText.setFilters(filters);
+    }
 }
