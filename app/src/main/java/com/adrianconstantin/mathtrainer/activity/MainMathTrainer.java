@@ -10,10 +10,10 @@ import android.view.MenuItem;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
-import com.adrianconstantin.mathtrainer.integer.IntegerAdditionHandler;
-import com.adrianconstantin.mathtrainer.integer.IntegerDivisionHandler;
-import com.adrianconstantin.mathtrainer.integer.IntegerMultiplicationHandler;
-import com.adrianconstantin.mathtrainer.integer.IntegerSubtractionHanlder;
+import com.adrianconstantin.mathtrainer.natural.NaturalAdditionHandler;
+import com.adrianconstantin.mathtrainer.natural.NaturalDivisionHandler;
+import com.adrianconstantin.mathtrainer.natural.NaturalMultiplicationHandler;
+import com.adrianconstantin.mathtrainer.natural.NaturalSubtractionHanlder;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
 public class MainMathTrainer extends AppCompatActivity {
@@ -52,16 +52,16 @@ public class MainMathTrainer extends AppCompatActivity {
         switch (view.getId())
         {
             case R.id.buttonAddition:
-                bundle.putParcelable(Utils.OPERATION, new IntegerAdditionHandler());
+                bundle.putParcelable(Utils.OPERATION, new NaturalAdditionHandler());
                 break;
             case R.id.buttonSubtraction:
-                bundle.putParcelable(Utils.OPERATION, new IntegerSubtractionHanlder());
+                bundle.putParcelable(Utils.OPERATION, new NaturalSubtractionHanlder());
                 break;
             case R.id.buttonMultiplication:
-                bundle.putParcelable(Utils.OPERATION, new IntegerMultiplicationHandler());
+                bundle.putParcelable(Utils.OPERATION, new NaturalMultiplicationHandler());
                 break;
             case R.id.buttonDivision:
-                bundle.putParcelable(Utils.OPERATION, new IntegerDivisionHandler());
+                bundle.putParcelable(Utils.OPERATION, new NaturalDivisionHandler());
                 break;
             default:
                 throw new UnknownOperationException();

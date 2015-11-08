@@ -1,9 +1,9 @@
-package com.adrianconstantin.mathtrainer.integer;
+package com.adrianconstantin.mathtrainer.natural;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.adrianconstantin.mathtrainer.base.MultiplicationHandlerBase;
+import com.adrianconstantin.mathtrainer.base.AdditionHandlerBase;
 import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 import com.adrianconstantin.mathtrainer.utils.Utils;
@@ -11,23 +11,23 @@ import com.adrianconstantin.mathtrainer.utils.Utils;
 /**
  * Created by AdrianConstantin on 11/7/2015.
  */
-public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Integer, IntegerRandomGenerator, IntegerOperandParser>
-        implements Parcelable{
+public class NaturalAdditionHandler extends AdditionHandlerBase<Integer, IntegerRandomGenerator, NaturalOperandParser>
+        implements Parcelable {
     /**
      *
      */
-    public IntegerMultiplicationHandler() {
+    public NaturalAdditionHandler() {
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
         GenerateOperands();
-        mOperandParser = new IntegerOperandParser(this);
+        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**
      *
      * @param in
      */
-    protected IntegerMultiplicationHandler(Parcel in) throws InstantiationException, IllegalAccessException {
+    public NaturalAdditionHandler(Parcel in) {
         this();
         mFirstOperand = in.readInt();
         mSecondOperand = in.readInt();
@@ -36,23 +36,15 @@ public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Inte
     /**
      *
      */
-    public static final Creator<IntegerMultiplicationHandler> CREATOR = new Creator<IntegerMultiplicationHandler>() {
+    public static final Creator<NaturalAdditionHandler> CREATOR = new Creator<NaturalAdditionHandler>() {
         @Override
-        public IntegerMultiplicationHandler createFromParcel(Parcel in) {
-            try {
-                return new IntegerMultiplicationHandler(in);
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-
-            return null;
+        public NaturalAdditionHandler createFromParcel(Parcel in) {
+            return new NaturalAdditionHandler(in);
         }
 
         @Override
-        public IntegerMultiplicationHandler[] newArray(int size) {
-            return new IntegerMultiplicationHandler[size];
+        public NaturalAdditionHandler[] newArray(int size) {
+            return new NaturalAdditionHandler[size];
         }
     };
 
@@ -61,7 +53,7 @@ public class IntegerMultiplicationHandler extends MultiplicationHandlerBase<Inte
      */
     @Override
     public Integer ExecuteOperation() {
-        return mFirstOperand * mSecondOperand;
+        return mFirstOperand + mSecondOperand;
     }
 
     /**

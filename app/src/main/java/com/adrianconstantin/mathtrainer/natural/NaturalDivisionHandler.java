@@ -1,9 +1,9 @@
-package com.adrianconstantin.mathtrainer.integer;
+package com.adrianconstantin.mathtrainer.natural;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.adrianconstantin.mathtrainer.base.AdditionHandlerBase;
+import com.adrianconstantin.mathtrainer.base.DivisionHandlerBase;
 import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 import com.adrianconstantin.mathtrainer.utils.Utils;
@@ -11,23 +11,23 @@ import com.adrianconstantin.mathtrainer.utils.Utils;
 /**
  * Created by AdrianConstantin on 11/7/2015.
  */
-public class IntegerAdditionHandler extends AdditionHandlerBase<Integer, IntegerRandomGenerator, IntegerOperandParser>
+public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, IntegerRandomGenerator, NaturalOperandParser>
         implements Parcelable {
     /**
      *
      */
-    public IntegerAdditionHandler() {
+    public NaturalDivisionHandler() {
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
         GenerateOperands();
-        mOperandParser = new IntegerOperandParser(this);
+        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**
      *
      * @param in
      */
-    public IntegerAdditionHandler(Parcel in) {
+    protected NaturalDivisionHandler(Parcel in) {
         this();
         mFirstOperand = in.readInt();
         mSecondOperand = in.readInt();
@@ -36,15 +36,15 @@ public class IntegerAdditionHandler extends AdditionHandlerBase<Integer, Integer
     /**
      *
      */
-    public static final Creator<IntegerAdditionHandler> CREATOR = new Creator<IntegerAdditionHandler>() {
+    public static final Creator<NaturalDivisionHandler> CREATOR = new Creator<NaturalDivisionHandler>() {
         @Override
-        public IntegerAdditionHandler createFromParcel(Parcel in) {
-            return new IntegerAdditionHandler(in);
+        public NaturalDivisionHandler createFromParcel(Parcel in) {
+            return new NaturalDivisionHandler(in);
         }
 
         @Override
-        public IntegerAdditionHandler[] newArray(int size) {
-            return new IntegerAdditionHandler[size];
+        public NaturalDivisionHandler[] newArray(int size) {
+            return new NaturalDivisionHandler[size];
         }
     };
 
@@ -53,7 +53,7 @@ public class IntegerAdditionHandler extends AdditionHandlerBase<Integer, Integer
      */
     @Override
     public Integer ExecuteOperation() {
-        return mFirstOperand + mSecondOperand;
+        return mFirstOperand / mSecondOperand;
     }
 
     /**
@@ -69,10 +69,38 @@ public class IntegerAdditionHandler extends AdditionHandlerBase<Integer, Integer
      */
     @Override
     public void GenerateOperands() {
+        mFirstOperand = mRandomGenerator.Generate();
+        int tempMax = mRandomGenerator.GetMaximum();
+
+        if (mFirstOperand == 0 ||
+                mFirstOperand == 1 ||
+                mFirstOperand == 2) {
+            mSecondOperand = 1;
+            return;
+        }
+
+        mRandomGenerator.SetMaximum(mFirstOperand / 2);
+
+        int tryRounds = 0;
+        int maxTryRounds = 200;
+
         do {
-            mFirstOperand = mRandomGenerator.Generate();
             mSecondOperand = mRandomGenerator.Generate();
-        }while (ExecuteOperation() > mRandomGenerator.GetMaximum());
+            tryRounds++;
+
+            if (tryRounds >= maxTryRounds) {
+
+                if (mSecondOperand == 0 || mFirstOperand % mSecondOperand != 0){
+                    mSecondOperand = 1;
+                }
+
+                break;
+            }
+        } while (mSecondOperand == 0 ||
+                mSecondOperand == 1 ||
+                mFirstOperand % mSecondOperand != 0);
+
+        mRandomGenerator.SetMaximum(tempMax);
     }
 
     /**

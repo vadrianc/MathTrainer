@@ -1,4 +1,4 @@
-package com.adrianconstantin.mathtrainer.integer;
+package com.adrianconstantin.mathtrainer.natural;
 
 import com.adrianconstantin.mathtrainer.base.IOperationHandler;
 import com.adrianconstantin.mathtrainer.base.OperandParserBase;
@@ -6,8 +6,8 @@ import com.adrianconstantin.mathtrainer.base.OperandParserBase;
 /**
  * Created by AdrianConstantin on 11/7/2015.
  */
-public class IntegerOperandParser extends OperandParserBase<Integer> {
-    public IntegerOperandParser(IOperationHandler handler){
+public class NaturalOperandParser extends OperandParserBase<Integer> {
+    public NaturalOperandParser(IOperationHandler handler){
         super(handler);
     }
 

@@ -1,9 +1,9 @@
-package com.adrianconstantin.mathtrainer.integer;
+package com.adrianconstantin.mathtrainer.natural;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.adrianconstantin.mathtrainer.base.SubstractionHandlerBase;
+import com.adrianconstantin.mathtrainer.base.MultiplicationHandlerBase;
 import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 import com.adrianconstantin.mathtrainer.utils.Utils;
@@ -11,23 +11,23 @@ import com.adrianconstantin.mathtrainer.utils.Utils;
 /**
  * Created by AdrianConstantin on 11/7/2015.
  */
-public class IntegerSubtractionHanlder extends SubstractionHandlerBase<Integer, IntegerRandomGenerator, IntegerOperandParser>
-        implements Parcelable {
+public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Integer, IntegerRandomGenerator, NaturalOperandParser>
+        implements Parcelable{
     /**
      *
      */
-    public IntegerSubtractionHanlder() {
+    public NaturalMultiplicationHandler() {
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
         GenerateOperands();
-        mOperandParser = new IntegerOperandParser(this);
+        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**
      *
      * @param in
      */
-    protected IntegerSubtractionHanlder(Parcel in) {
+    protected NaturalMultiplicationHandler(Parcel in) throws InstantiationException, IllegalAccessException {
         this();
         mFirstOperand = in.readInt();
         mSecondOperand = in.readInt();
@@ -36,15 +36,23 @@ public class IntegerSubtractionHanlder extends SubstractionHandlerBase<Integer, 
     /**
      *
      */
-    public static final Creator<IntegerSubtractionHanlder> CREATOR = new Creator<IntegerSubtractionHanlder>() {
+    public static final Creator<NaturalMultiplicationHandler> CREATOR = new Creator<NaturalMultiplicationHandler>() {
         @Override
-        public IntegerSubtractionHanlder createFromParcel(Parcel in) {
-            return new IntegerSubtractionHanlder(in);
+        public NaturalMultiplicationHandler createFromParcel(Parcel in) {
+            try {
+                return new NaturalMultiplicationHandler(in);
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            return null;
         }
 
         @Override
-        public IntegerSubtractionHanlder[] newArray(int size) {
-            return new IntegerSubtractionHanlder[size];
+        public NaturalMultiplicationHandler[] newArray(int size) {
+            return new NaturalMultiplicationHandler[size];
         }
     };
 
@@ -53,7 +61,7 @@ public class IntegerSubtractionHanlder extends SubstractionHandlerBase<Integer, 
      */
     @Override
     public Integer ExecuteOperation() {
-        return mFirstOperand - mSecondOperand;
+        return mFirstOperand * mSecondOperand;
     }
 
     /**
@@ -72,7 +80,7 @@ public class IntegerSubtractionHanlder extends SubstractionHandlerBase<Integer, 
         do {
             mFirstOperand = mRandomGenerator.Generate();
             mSecondOperand = mRandomGenerator.Generate();
-        } while (ExecuteOperation() < 0);
+        }while (ExecuteOperation() > mRandomGenerator.GetMaximum());
     }
 
     /**
