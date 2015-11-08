@@ -69,10 +69,38 @@ public class IntegerDivisionHandler extends DivisionHandlerBase<Integer, Integer
      */
     @Override
     public void GenerateOperands() {
+        mFirstOperand = mRandomGenerator.Generate();
+        int tempMax = mRandomGenerator.GetMaximum();
+
+        if (mFirstOperand == 0 ||
+                mFirstOperand == 1 ||
+                mFirstOperand == 2) {
+            mSecondOperand = 1;
+            return;
+        }
+
+        mRandomGenerator.SetMaximum(mFirstOperand / 2);
+
+        int tryRounds = 0;
+        int maxTryRounds = 200;
+
         do {
-            mFirstOperand = mRandomGenerator.Generate();
             mSecondOperand = mRandomGenerator.Generate();
-        }while (mSecondOperand == 0 || mFirstOperand % mSecondOperand != 0);
+            tryRounds++;
+
+            if (tryRounds >= maxTryRounds) {
+
+                if (mSecondOperand == 0 || mFirstOperand % mSecondOperand != 0){
+                    mSecondOperand = 1;
+                }
+
+                break;
+            }
+        } while (mSecondOperand == 0 ||
+                mSecondOperand == 1 ||
+                mFirstOperand % mSecondOperand != 0);
+
+        mRandomGenerator.SetMaximum(tempMax);
     }
 
     /**

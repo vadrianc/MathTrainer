@@ -55,4 +55,12 @@ public abstract class RandomGeneratorBase<T extends Number> implements IRandomGe
     public int GetMaximum(){
         return mMaximum;
     }
+
+    /**
+     *
+     * @param maximum
+     */
+    public void SetMaximum(int maximum){
+        mMaximum = maximum;
+    }
 }
