@@ -1,7 +1,5 @@
 package com.adrianconstantin.mathtrainer.base;
 
-import java.util.List;
-
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
@@ -66,4 +64,10 @@ public interface IOperationHandler<T extends Number, R extends IRandomGenerator<
      * @param generator
      */
     void SetRandomGenerator(R generator);
+
+    /**
+     *
+     * @return
+     */
+    int GetResultMaxLength();
 }

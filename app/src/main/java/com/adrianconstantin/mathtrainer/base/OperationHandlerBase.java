@@ -1,7 +1,5 @@
 package com.adrianconstantin.mathtrainer.base;
 
-import java.lang.reflect.InvocationTargetException;
-
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */

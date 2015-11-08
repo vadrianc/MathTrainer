@@ -16,6 +16,11 @@ public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Inte
     /**
      *
      */
+    private final int RESULT_MAX_LENGTH = 4;
+
+    /**
+     *
+     */
     public NaturalMultiplicationHandler() {
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
@@ -70,12 +75,18 @@ public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Inte
      */
     @Override
     public void GenerateOperands() {
-        do {
-            mFirstOperand = mRandomGenerator.Generate();
-            mSecondOperand = mRandomGenerator.Generate();
-        }while (ExecuteOperation() > mRandomGenerator.GetMaximum());
+        mFirstOperand = mRandomGenerator.Generate();
+        mSecondOperand = mRandomGenerator.Generate();
 
         mOperandParser = new NaturalOperandParser(this);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int GetResultMaxLength() {
+        return RESULT_MAX_LENGTH;
     }
 
     /**

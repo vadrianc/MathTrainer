@@ -16,6 +16,11 @@ public class NaturalSubtractionHanlder extends SubstractionHandlerBase<Integer, 
     /**
      *
      */
+    private final int RESULT_MAX_LENGTH = 2;
+
+    /**
+     *
+     */
     public NaturalSubtractionHanlder() {
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
@@ -76,6 +81,14 @@ public class NaturalSubtractionHanlder extends SubstractionHandlerBase<Integer, 
         } while (ExecuteOperation() < 0);
 
         mOperandParser = new NaturalOperandParser(this);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int GetResultMaxLength() {
+        return RESULT_MAX_LENGTH;
     }
 
     /**

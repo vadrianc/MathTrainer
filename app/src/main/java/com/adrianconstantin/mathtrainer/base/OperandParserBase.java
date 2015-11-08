@@ -16,8 +16,7 @@ public abstract class OperandParserBase<T extends Number> implements IOperandPar
 
     /**
      *
-     * @param firstOperand
-     * @param secondOperand
+     * @param handler
      */
     public OperandParserBase(IOperationHandler handler){
         mFirstOperand = (T)handler.GetFirstOperand();

@@ -1,8 +1,5 @@
 package com.adrianconstantin.mathtrainer.base;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */

@@ -6,16 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.base.IOperationHandler;
-import com.adrianconstantin.mathtrainer.base.IRandomGenerator;
 import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
-import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
 public class OperationHandlerActivity extends AppCompatActivity {
@@ -116,7 +113,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
         TextView resultEditText = (TextView)findViewById(R.id.resultEditText);
 
         InputFilter[] filters = new InputFilter[1];
-        filters[0] = new InputFilter.LengthFilter(mOperationHandler.ExecuteOperation().toString().length());
+        filters[0] = new InputFilter.LengthFilter(mOperationHandler.GetResultMaxLength());
 
         resultEditText.setFilters(filters);
     }
