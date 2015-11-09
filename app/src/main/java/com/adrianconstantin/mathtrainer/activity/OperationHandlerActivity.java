@@ -71,10 +71,13 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     private void handleTextChange(EditText resultEditText)
     {
-        if (resultEditText.getText() == null || resultEditText.getText().toString().equals("")) return;
+        if (resultEditText.getText() == null ||
+                resultEditText.getText().toString().equals("") ||
+                resultEditText.getText().toString().equals("-")) return;
 
         int resultLength = mOperationHandler.ExecuteOperation().toString().length();
         int inputLength = resultEditText.getText().length();
+
         int userInput = Integer.parseInt(resultEditText.getText().toString());
 
         boolean lengthsAreEqual = resultLength == inputLength;
