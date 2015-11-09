@@ -76,11 +76,19 @@ public class NaturalSubtractionHanlder extends SubstractionHandlerBase<Integer, 
     @Override
     public void GenerateOperands() {
         do {
-            mFirstOperand = mRandomGenerator.Generate();
-            mSecondOperand = mRandomGenerator.Generate();
+            CreateRandomOperands();
         } while (ExecuteOperation() < 0);
 
         mOperandParser = new NaturalOperandParser(this);
+    }
+
+    /**
+     *
+     */
+    @Override
+    protected void CreateRandomOperands() {
+        mFirstOperand = mRandomGenerator.Generate();
+        mSecondOperand = mRandomGenerator.Generate();
     }
 
     /**

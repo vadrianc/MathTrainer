@@ -88,6 +88,11 @@ public abstract class OperationHandlerBase<T extends Number, R extends IRandomGe
     public abstract void GenerateOperands();
 
     /**
+     *
+     */
+    protected abstract void CreateRandomOperands();
+
+    /**
      * @return the number of operands.
      */
     @Override

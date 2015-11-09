@@ -75,10 +75,18 @@ public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Inte
      */
     @Override
     public void GenerateOperands() {
-        mFirstOperand = mRandomGenerator.Generate();
-        mSecondOperand = mRandomGenerator.Generate();
+        CreateRandomOperands();
 
         mOperandParser = new NaturalOperandParser(this);
+    }
+
+    /**
+     *
+     */
+    @Override
+    protected void CreateRandomOperands() {
+        mFirstOperand = mRandomGenerator.Generate();
+        mSecondOperand = mRandomGenerator.Generate();
     }
 
     /**

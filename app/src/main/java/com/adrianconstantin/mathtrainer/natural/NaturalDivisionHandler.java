@@ -75,6 +75,16 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
      */
     @Override
     public void GenerateOperands() {
+        CreateRandomOperands();
+
+        mOperandParser = new NaturalOperandParser(this);
+    }
+
+    /**
+     *
+     */
+    @Override
+    protected void CreateRandomOperands() {
         mFirstOperand = mRandomGenerator.Generate();
         int tempMax = mRandomGenerator.GetMaximum();
 
@@ -107,8 +117,6 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
                 mFirstOperand % mSecondOperand != 0);
 
         mRandomGenerator.SetMaximum(tempMax);
-
-        mOperandParser = new NaturalOperandParser(this);
     }
 
     /**

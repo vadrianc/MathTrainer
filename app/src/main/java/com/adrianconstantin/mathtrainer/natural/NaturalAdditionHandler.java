@@ -76,10 +76,17 @@ public class NaturalAdditionHandler extends AdditionHandlerBase<Integer, Integer
      */
     @Override
     public void GenerateOperands() {
-        mFirstOperand = mRandomGenerator.Generate();
-        mSecondOperand = mRandomGenerator.Generate();
+        CreateRandomOperands();
 
         mOperandParser = new NaturalOperandParser(this);
+    }
+
+    /**
+     *
+     */
+    protected void CreateRandomOperands(){
+        mFirstOperand = mRandomGenerator.Generate();
+        mSecondOperand = mRandomGenerator.Generate();
     }
 
     /**
