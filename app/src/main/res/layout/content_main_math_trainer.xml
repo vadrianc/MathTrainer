@@ -8,48 +8,67 @@
 
     <include layout="@layout/math_trainer_toolbar"/>
 
-    <Button
-        android:text="@string/addition"
-        android:id="@+id/buttonAddition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textSize="@dimen/button_text_size"
-        android:layout_marginTop="@dimen/upper_button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:onClick="ButtonClickEvent"/>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*">
 
-    <Button
-        android:text="@string/subtraction"
-        android:id="@+id/buttonSubtraction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textSize="@dimen/button_text_size"
-        android:layout_marginTop="@dimen/button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:onClick="ButtonClickEvent"/>
+        <TableRow>
 
-    <Button
-        android:text="@string/multiplication"
-        android:id="@+id/buttonMultiplication"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textSize="@dimen/button_text_size"
-        android:layout_marginTop="@dimen/button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:onClick="ButtonClickEvent"/>
+            <Button
+                android:text="@string/addition"
+                android:id="@+id/buttonAddition"
+                android:layout_width="@dimen/button_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_text_size"
+                android:layout_marginTop="@dimen/button_margin"
+                android:layout_marginBottom="@dimen/button_margin"
+                android:onClick="ButtonClickEvent"/>
 
-    <Button
-        android:text="@string/division"
-        android:id="@+id/buttonDivision"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textSize="@dimen/button_text_size"
-        android:layout_marginTop="@dimen/button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:onClick="ButtonClickEvent"/>
+            <Button
+                android:text="@string/subtraction"
+                android:id="@+id/buttonSubtraction"
+                android:layout_width="@dimen/button_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_text_size"
+                android:layout_marginTop="@dimen/button_margin"
+                android:layout_marginBottom="@dimen/button_margin"
+                android:onClick="ButtonClickEvent"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:text="@string/multiplication"
+                android:id="@+id/buttonMultiplication"
+                android:layout_width="@dimen/button_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_text_size"
+                android:layout_marginTop="@dimen/button_margin"
+                android:layout_marginBottom="@dimen/button_margin"
+                android:onClick="ButtonClickEvent"/>
+
+            <Button
+                android:text="@string/division"
+                android:id="@+id/buttonDivision"
+                android:layout_width="@dimen/button_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_text_size"
+                android:layout_marginTop="@dimen/button_margin"
+                android:layout_marginBottom="@dimen/button_margin"
+                android:onClick="ButtonClickEvent"/>
+
+        </TableRow>
+
+    </TableLayout>
 
 </LinearLayout>
