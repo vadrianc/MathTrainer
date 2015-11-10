@@ -4,17 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.adrianconstantin.mathtrainer.R;
+import com.adrianconstantin.mathtrainer.base.OperationType;
 import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
 import com.adrianconstantin.mathtrainer.natural.NaturalAdditionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalDivisionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalMultiplicationHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalSubtractionHanlder;
+import com.adrianconstantin.mathtrainer.setting.OperandType;
+import com.adrianconstantin.mathtrainer.test.CustomTest;
 import com.adrianconstantin.mathtrainer.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainMathTrainer extends AppCompatActivity {
 
@@ -62,6 +69,15 @@ public class MainMathTrainer extends AppCompatActivity {
                 break;
             case R.id.buttonDivision:
                 bundle.putParcelable(Utils.OPERATION, new NaturalDivisionHandler());
+                break;
+            case R.id.takeTestButton:
+                List<Pair<OperandType, OperationType>> operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.ADDITION));
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.SUBSTRACTION));
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.MULTIPLICATION));
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.DIVISION));
+
+                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors));
                 break;
             default:
                 throw new UnknownOperationException();

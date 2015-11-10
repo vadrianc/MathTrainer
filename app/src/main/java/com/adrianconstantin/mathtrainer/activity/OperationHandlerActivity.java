@@ -13,12 +13,25 @@ import android.widget.TextView;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.base.IOperationHandler;
-import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
+import com.adrianconstantin.mathtrainer.test.ITest;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
 public class OperationHandlerActivity extends AppCompatActivity {
 
+    /**
+     *
+     */
     IOperationHandler mOperationHandler = null;
+
+    /**
+     *
+     */
+    IOperationHandler mCurrentOperationHandler = null;
+
+    /**
+     *
+     */
+    ITest mTest = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +43,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         init();
-        try {
-            handleIntent();
-        } catch (UnknownOperationException e) {
-            e.printStackTrace();
-        }
+        mCurrentOperationHandler = GetOperationHandler();
 
         populateTextView();
 
@@ -75,16 +84,17 @@ public class OperationHandlerActivity extends AppCompatActivity {
                 resultEditText.getText().toString().equals("") ||
                 resultEditText.getText().toString().equals("-")) return;
 
-        int resultLength = mOperationHandler.ExecuteOperation().toString().length();
+        int resultLength = mCurrentOperationHandler.ExecuteOperation().toString().length();
         int inputLength = resultEditText.getText().length();
 
         int userInput = Integer.parseInt(resultEditText.getText().toString());
 
         boolean lengthsAreEqual = resultLength == inputLength;
-        boolean valuesAreEqual = (Integer)mOperationHandler.ExecuteOperation() == userInput;
+        boolean valuesAreEqual = (Integer)mCurrentOperationHandler.ExecuteOperation() == userInput;
 
         if (valuesAreEqual) {
-            mOperationHandler.GenerateOperands();
+            mCurrentOperationHandler = GetOperationHandler();
+            mCurrentOperationHandler.GenerateOperands();
             populateTextView();
             resultEditText.getText().clear();
         }
@@ -96,18 +106,17 @@ public class OperationHandlerActivity extends AppCompatActivity {
     /**
      *
      * @return
-     * @throws UnknownOperationException
      */
-    private IOperationHandler handleIntent() throws UnknownOperationException {
-        Intent intent = getIntent();
-        mOperationHandler  = intent.getExtras().getParcelable(Utils.OPERATION);
-
-        if (mOperationHandler == null)
-        {
-            throw new UnknownOperationException();
+    private IOperationHandler GetOperationHandler() {
+        if (mOperationHandler == null && mTest == null) {
+            Intent intent = getIntent();
+            mOperationHandler = intent.getExtras().getParcelable(Utils.OPERATION);
+            mTest = intent.getExtras().getParcelable(Utils.TEST);
         }
 
-        return mOperationHandler;
+        if (mOperationHandler != null) return mOperationHandler;
+
+        return mTest.GetNextOperation();
     }
 
     /**
@@ -115,12 +124,12 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     private void populateTextView(){
         TextView charTextView = (TextView)findViewById(R.id.char_text);
-        charTextView.setText(mOperationHandler.GetExpression());
+        charTextView.setText(mCurrentOperationHandler.GetExpression());
 
         TextView resultEditText = (TextView)findViewById(R.id.resultEditText);
 
         InputFilter[] filters = new InputFilter[1];
-        filters[0] = new InputFilter.LengthFilter(mOperationHandler.GetResultMaxLength());
+        filters[0] = new InputFilter.LengthFilter(mCurrentOperationHandler.GetResultMaxLength());
 
         resultEditText.setFilters(filters);
     }

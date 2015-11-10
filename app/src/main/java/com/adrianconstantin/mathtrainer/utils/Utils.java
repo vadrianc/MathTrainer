@@ -15,6 +15,11 @@ public class Utils {
     public static final String OPERATION = "Operation";
 
     /**
+     * Test type constant.
+     */
+    public static final String TEST = "TEST";
+
+    /**
      *
      * @param length
      * @return
