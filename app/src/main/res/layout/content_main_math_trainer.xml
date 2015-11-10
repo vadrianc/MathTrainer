@@ -69,6 +69,21 @@
 
         </TableRow>
 
+        <TableRow>
+
+            <Button android:text="@string/take_a_test"
+                android:id="@+id/takeTestButton"
+                android:layout_width="@dimen/button_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_text_size"
+                android:layout_marginTop="@dimen/button_margin"
+                android:layout_marginBottom="@dimen/button_margin"
+                android:onClick="ButtonClickEvent"/>
+
+        </TableRow>
+
     </TableLayout>
 
 </LinearLayout>
