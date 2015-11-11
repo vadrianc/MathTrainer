@@ -16,26 +16,18 @@
         <TableRow>
 
             <Button
+                style="@style/ButtonStyle"
                 android:text="@string/addition"
                 android:id="@+id/buttonAddition"
-                android:layout_width="@dimen/button_layout_width"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginLeft="@dimen/button_margin_left"
                 android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
 
             <Button
+                style="@style/ButtonStyle"
                 android:text="@string/subtraction"
                 android:id="@+id/buttonSubtraction"
-                android:layout_width="@dimen/button_layout_width"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
@@ -45,26 +37,18 @@
         <TableRow>
 
             <Button
+                style="@style/ButtonStyle"
                 android:text="@string/multiplication"
                 android:id="@+id/buttonMultiplication"
-                android:layout_width="@dimen/button_layout_width"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginLeft="@dimen/button_margin_left"
                 android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
 
             <Button
+                style="@style/ButtonStyle"
                 android:text="@string/division"
                 android:id="@+id/buttonDivision"
-                android:layout_width="@dimen/button_layout_width"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
@@ -73,13 +57,10 @@
 
         <TableRow>
 
-            <Button android:text="@string/take_a_test"
+            <Button
+                style="@style/ButtonStyle"
+                android:text="@string/take_a_test"
                 android:id="@+id/takeTestButton"
-                android:layout_width="@dimen/button_layout_width"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginBottom="@dimen/button_margin"
                 android:layout_marginLeft="@dimen/button_margin_left"
