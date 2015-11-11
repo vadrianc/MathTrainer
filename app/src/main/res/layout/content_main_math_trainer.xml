@@ -24,7 +24,8 @@
                 android:textAllCaps="false"
                 android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
-                android:layout_marginBottom="@dimen/button_margin"
+                android:layout_marginLeft="@dimen/button_margin_left"
+                android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
 
             <Button
@@ -36,7 +37,7 @@
                 android:textAllCaps="false"
                 android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
-                android:layout_marginBottom="@dimen/button_margin"
+                android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
 
         </TableRow>
@@ -52,7 +53,8 @@
                 android:textAllCaps="false"
                 android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
-                android:layout_marginBottom="@dimen/button_margin"
+                android:layout_marginLeft="@dimen/button_margin_left"
+                android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
 
             <Button
@@ -64,7 +66,7 @@
                 android:textAllCaps="false"
                 android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
-                android:layout_marginBottom="@dimen/button_margin"
+                android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
 
         </TableRow>
@@ -80,6 +82,8 @@
                 android:textSize="@dimen/button_text_size"
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginBottom="@dimen/button_margin"
+                android:layout_marginLeft="@dimen/button_margin_left"
+                android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
 
         </TableRow>
