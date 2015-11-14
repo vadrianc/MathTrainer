@@ -1,5 +1,6 @@
 package com.adrianconstantin.mathtrainer.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -165,5 +167,19 @@ public class OperationHandlerActivity extends AppCompatActivity {
         filters[0] = new InputFilter.LengthFilter(mCurrentOperationHandler.GetResultMaxLength());
 
         resultEditText.setFilters(filters);
+    }
+
+    /**
+     *
+     * @param view
+     */
+    public void ButtonClickEvent(View view){
+        switch (view.getId()) {
+            case R.id.pencilImg:
+                TextView charTextView = (TextView)findViewById(R.id.char_text);
+                charTextView.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        }
     }
 }
