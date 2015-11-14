@@ -14,13 +14,30 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/operation_text_size"/>
 
-    <EditText
-        android:id="@+id/resultEditText"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/operation_text_size"
-        android:maxLength="10"
-        android:inputType="numberSigned|number"/>
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/resultEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/operation_text_size"
+            android:maxLength="10"
+            android:inputType="numberSigned|number"
+            android:layout_toLeftOf="@+id/pencilImg"/>
+
+        <ImageView
+            android:id="@+id/pencilImg"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@mipmap/ic_pencil"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
 </LinearLayout>
