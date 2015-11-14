@@ -24,4 +24,10 @@
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:background">@layout/button_round_corners</item>
     </style>
+
+    <!-- Toolbar title -->
+    <style name="toolbarTextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">32dip</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
+    </style>
 </resources>

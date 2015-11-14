@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="top|center_horizontal">
 
-    <include layout="@layout/math_trainer_toolbar"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/opToolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/colorToolbarBackground"
+        app:titleTextAppearance="@style/toolbarTextStyle"/>
 
     <TextView
         android:id="@+id/char_text"
