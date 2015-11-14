@@ -40,4 +40,11 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/answerConfirmImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

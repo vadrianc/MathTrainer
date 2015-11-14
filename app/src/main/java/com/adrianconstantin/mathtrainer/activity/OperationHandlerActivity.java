@@ -2,19 +2,23 @@ package com.adrianconstantin.mathtrainer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.base.IOperationHandler;
 import com.adrianconstantin.mathtrainer.test.ITest;
 import com.adrianconstantin.mathtrainer.utils.Utils;
+
 
 public class OperationHandlerActivity extends AppCompatActivity {
 
@@ -90,17 +94,46 @@ public class OperationHandlerActivity extends AppCompatActivity {
         int userInput = Integer.parseInt(resultEditText.getText().toString());
 
         boolean lengthsAreEqual = resultLength == inputLength;
+        boolean isAnswerGreater = mCurrentOperationHandler.ExecuteOperation().intValue() < Integer.parseInt(resultEditText.getText().toString());
         boolean valuesAreEqual = (Integer)mCurrentOperationHandler.ExecuteOperation() == userInput;
 
         if (valuesAreEqual) {
-            mCurrentOperationHandler = GetOperationHandler();
-            mCurrentOperationHandler.GenerateOperands();
-            populateTextView();
-            resultEditText.getText().clear();
+            displayConfirmationImage(R.mipmap.ic_thumb_up);
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mCurrentOperationHandler = GetOperationHandler();
+                    mCurrentOperationHandler.GenerateOperands();
+                    populateTextView();
+                    final EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
+                    resultEditText.getText().clear();
+                    hideConfirmationImage();
+                }
+            }, 1000);
         }
-        else if (lengthsAreEqual){
-            // display warning
+        else if (lengthsAreEqual || isAnswerGreater) {
+            displayConfirmationImage(R.mipmap.ic_thumb_down);
         }
+    }
+
+    /**
+     *
+     * @param id
+     */
+    private void displayConfirmationImage(int id){
+        ImageView answerConfirmImg = (ImageView)findViewById(R.id.answerConfirmImg);
+        answerConfirmImg.setImageResource(id);
+        answerConfirmImg.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     *
+     */
+    private void hideConfirmationImage(){
+        ImageView answerConfirmImg = (ImageView)findViewById(R.id.answerConfirmImg);
+        answerConfirmImg.setVisibility(View.GONE);
     }
 
     /**
