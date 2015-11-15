@@ -164,7 +164,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
             displayConfirmationImage(R.mipmap.ic_thumb_down);
 
             if (mTest != null) {
-                mTest.GetResult().PutIncorrectAnswer(mOperationHandler.GetExpression(), resultEditText.getText().toString());
+                mTest.GetResult().PutIncorrectAnswer(mCurrentOperationHandler.GetExpression(), resultEditText.getText().toString());
                 mBlockResultHandler = true;
                 handleNextOperation();
             }
