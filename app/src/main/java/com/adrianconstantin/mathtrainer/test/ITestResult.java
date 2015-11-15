@@ -29,4 +29,10 @@ public interface ITestResult {
      * @param answer
      */
     void PutIncorrectAnswer(String exercise, String answer);
+
+    /**
+     *
+     * @return
+     */
+    String GetCustomMessage();
 }

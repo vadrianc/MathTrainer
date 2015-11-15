@@ -33,8 +33,11 @@ public class CustomResult implements ITestResult, Parcelable {
      * @param in
      */
     protected CustomResult(Parcel in) {
-        mCorrectAnswerList = in.readArrayList(String.class.getClassLoader());
-        mIncorrectAnswerList = in.readArrayList(String.class.getClassLoader());
+        mCorrectAnswerList = new ArrayList<String>();
+        mIncorrectAnswerList = new ArrayList<String>();
+
+        in.readStringList(mCorrectAnswerList);
+        in.readStringList(mIncorrectAnswerList);
     }
 
     public static final Creator<CustomResult> CREATOR = new Creator<CustomResult>() {
@@ -94,6 +97,37 @@ public class CustomResult implements ITestResult, Parcelable {
     @Override
     public void PutIncorrectAnswer(String exercise, String answer) {
         mIncorrectAnswerList.add(String.format("%s = %s", exercise, answer));
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public String GetCustomMessage() {
+        StringBuilder msgBuilder = new StringBuilder();
+
+        if (mIncorrectAnswerList.size() == 0) {
+            msgBuilder.append("Congratulations! All your answers are correct.");
+            msgBuilder.append("\n");
+            msgBuilder.append("Consider taking the test multiple times to improve your skills.");
+        } else {
+            int total = mCorrectAnswerList.size() + mIncorrectAnswerList.size();
+
+            msgBuilder.append("You answered correctly ");
+            msgBuilder.append(mCorrectAnswerList.size());
+            msgBuilder.append(" out of ");
+            msgBuilder.append(total);
+            msgBuilder.append('.');
+            msgBuilder.append("\n");
+
+            if (mCorrectAnswerList.size() >= 7){
+                msgBuilder.append("Consider taking the test multiple times to improve your skills.");
+            } else {
+                msgBuilder.append("Consider practicing on individual operations before taking the test.");
+            }
+        }
+        
+        return msgBuilder.toString();
     }
 
     /**
