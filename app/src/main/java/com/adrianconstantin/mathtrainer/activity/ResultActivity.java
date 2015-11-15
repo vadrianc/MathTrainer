@@ -24,7 +24,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     /**
-     * 
+     *
      */
     private void initToolbar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.resultToolbar);
@@ -46,12 +46,19 @@ public class ResultActivity extends AppCompatActivity {
 
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append(result.GetCustomMessage());
-        strBuilder.append("\n\n");
-        strBuilder.append("Incorrect answers:\n");
-        strBuilder.append(result.GetIncorrectAnswers());
         strBuilder.append("\n");
-        strBuilder.append("Correct answers:\n");
-        strBuilder.append(result.GetCorrectAnswers());
+
+        if (result.GetIncorrectAnswers().length() > 0) {
+            strBuilder.append("\n");
+            strBuilder.append("Incorrect answers:\n");
+            strBuilder.append(result.GetIncorrectAnswers());
+        }
+
+        if (result.GetCorrectAnswers().length() > 0) {
+            strBuilder.append("\n");
+            strBuilder.append("Correct answers:\n");
+            strBuilder.append(result.GetCorrectAnswers());
+        }
 
         TextView resultTextView = (TextView)findViewById(R.id.resultTextView);
         resultTextView.setText(strBuilder.toString());
