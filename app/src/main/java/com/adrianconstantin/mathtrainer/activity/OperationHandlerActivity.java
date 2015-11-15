@@ -90,7 +90,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     private void updateTitleForTest(){
         if (mTest != null) {
-            String title = String.format("%s %s",
+            String title = String.format("%s   %s",
                     getResources().getString(R.string.toolbar_title_test),
                     mTest.GetProgress());
             getSupportActionBar().setTitle(title);
