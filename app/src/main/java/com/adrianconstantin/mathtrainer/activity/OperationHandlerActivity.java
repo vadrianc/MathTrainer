@@ -56,10 +56,10 @@ public class OperationHandlerActivity extends AppCompatActivity {
     {
         setupToolbar();
         setupEditText();
-        setupTitle();
 
         mCurrentOperationHandler = GetOperationHandler();
 
+        setupTitle();
         populateTextView();
 
         // show the keyboard.
@@ -72,13 +72,24 @@ public class OperationHandlerActivity extends AppCompatActivity {
     private void setupTitle(){
         Intent intent = getIntent();
 
-        if (intent.getExtras().containsKey(Utils.OPERATION)){
-            mOperationHandler = intent.getExtras().getParcelable(Utils.OPERATION);
+        if (mOperationHandler != null){
             getSupportActionBar().setTitle(mOperationHandler.GetOperationName());
             return;
         }
 
-        getSupportActionBar().setTitle(R.string.toolbar_title_test);
+        updateTitleForTest();
+    }
+
+    /**
+     * 
+     */
+    private void updateTitleForTest(){
+        if (mTest != null) {
+            String title = String.format("%s %s",
+                    getResources().getString(R.string.toolbar_title_test),
+                    mTest.GetProgress());
+            getSupportActionBar().setTitle(title);
+        }
     }
 
     /**
@@ -148,6 +159,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
                     final EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
                     resultEditText.getText().clear();
                     hideConfirmationImage();
+                    updateTitleForTest();
                 }
             }, 1000);
         }

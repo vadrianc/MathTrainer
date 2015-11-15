@@ -52,14 +52,14 @@ public class CustomTest implements ITest, Parcelable {
     public CustomTest(List<Pair<OperandType, OperationType>> operationDescriptors, int maxOperationCount){
         mOperationDescriptors = operationDescriptors;
         mMaxOperationCount = maxOperationCount;
-        mOperationCount = 1;
+        mOperationCount = 0;
         GenerateOperations();
     }
 
     public CustomTest(Parcel in) {
         mOperations = in.readArrayList(IOperationHandler.class.getClassLoader());
         mMaxOperationCount = in.readInt();
-        mOperationCount = 1;
+        mOperationCount = 0;
     }
 
     public static final Creator<CustomTest> CREATOR = new Creator<CustomTest>() {
