@@ -126,7 +126,7 @@ public class CustomResult implements ITestResult, Parcelable {
                 msgBuilder.append("Consider practicing on individual operations before taking the test.");
             }
         }
-        
+
         return msgBuilder.toString();
     }
 
