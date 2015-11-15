@@ -47,12 +47,18 @@ public class CustomTest implements ITest, Parcelable {
 
     /**
      *
+     */
+    private ITestResult mResult;
+
+    /**
+     *
      * @param operationDescriptors
      */
     public CustomTest(List<Pair<OperandType, OperationType>> operationDescriptors, int maxOperationCount){
         mOperationDescriptors = operationDescriptors;
         mMaxOperationCount = maxOperationCount;
         mOperationCount = 0;
+        mResult = new CustomResult();
         GenerateOperations();
     }
 
@@ -60,6 +66,7 @@ public class CustomTest implements ITest, Parcelable {
         mOperations = in.readArrayList(IOperationHandler.class.getClassLoader());
         mMaxOperationCount = in.readInt();
         mOperationCount = 0;
+        mResult = new CustomResult();
     }
 
     public static final Creator<CustomTest> CREATOR = new Creator<CustomTest>() {
@@ -102,6 +109,14 @@ public class CustomTest implements ITest, Parcelable {
     @Override
     public String GetProgress() {
         return String.format("%d / %d", mOperationCount, mMaxOperationCount);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public ITestResult GetResult() {
+        return mResult;
     }
 
     /**

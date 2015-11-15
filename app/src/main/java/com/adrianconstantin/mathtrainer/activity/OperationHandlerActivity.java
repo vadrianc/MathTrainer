@@ -153,6 +153,10 @@ public class OperationHandlerActivity extends AppCompatActivity {
         boolean valuesAreEqual = (Integer)mCurrentOperationHandler.ExecuteOperation() == userInput;
 
         if (valuesAreEqual) {
+            if (mTest != null) {
+                mTest.GetResult().PutCorrectAnswer(mCurrentOperationHandler.GetExpression(), resultEditText.getText().toString());
+            }
+
             displayConfirmationImage(R.mipmap.ic_thumb_up);
             handleNextOperation();
         }
@@ -160,6 +164,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
             displayConfirmationImage(R.mipmap.ic_thumb_down);
 
             if (mTest != null) {
+                mTest.GetResult().PutIncorrectAnswer(mOperationHandler.GetExpression(), resultEditText.getText().toString());
                 mBlockResultHandler = true;
                 handleNextOperation();
             }

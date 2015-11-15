@@ -29,4 +29,10 @@ public interface ITest {
      * @return
      */
     String GetProgress();
+
+    /**
+     *
+     * @return
+     */
+    ITestResult GetResult();
 }
