@@ -15,6 +15,7 @@ import com.adrianconstantin.mathtrainer.natural.NaturalDivisionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalMultiplicationHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalSubtractionHanlder;
 import com.adrianconstantin.mathtrainer.setting.OperandType;
+import com.adrianconstantin.mathtrainer.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,15 +37,29 @@ public class CustomTest implements ITest, Parcelable {
 
     /**
      *
+     */
+    private int mOperationCount = 1;
+
+    /**
+     *
+     */
+    private int mMaxOperationCount = Utils.MAX_TEST_QUESTIONS;
+
+    /**
+     *
      * @param operationDescriptors
      */
-    public CustomTest(List<Pair<OperandType, OperationType>> operationDescriptors){
+    public CustomTest(List<Pair<OperandType, OperationType>> operationDescriptors, int maxOperationCount){
         mOperationDescriptors = operationDescriptors;
+        mMaxOperationCount = maxOperationCount;
+        mOperationCount = 1;
         GenerateOperations();
     }
 
-    protected CustomTest(Parcel in) {
+    public CustomTest(Parcel in) {
         mOperations = in.readArrayList(IOperationHandler.class.getClassLoader());
+        mMaxOperationCount = in.readInt();
+        mOperationCount = 1;
     }
 
     public static final Creator<CustomTest> CREATOR = new Creator<CustomTest>() {
@@ -64,9 +79,29 @@ public class CustomTest implements ITest, Parcelable {
      */
     @Override
     public IOperationHandler GetNextOperation() {
-        Random random = new Random();
+        if (IsFinished()){
+            return null;
+        }
 
+        Random random = new Random();
+        mOperationCount++;
         return mOperations.get(random.nextInt(4));
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public boolean IsFinished() {
+        return mOperationCount == mMaxOperationCount;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public String GetProgress() {
+        return String.format("%d / %d", mOperationCount, mMaxOperationCount);
     }
 
     /**
@@ -147,5 +182,6 @@ public class CustomTest implements ITest, Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeList(mOperations);
+        dest.writeInt(mMaxOperationCount);
     }
 }

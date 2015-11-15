@@ -17,4 +17,16 @@ public interface ITest {
      * @return
      */
     IOperationHandler GetNextOperation();
+
+    /**
+     *
+     * @return
+     */
+    boolean IsFinished();
+
+    /**
+     *
+     * @return
+     */
+    String GetProgress();
 }

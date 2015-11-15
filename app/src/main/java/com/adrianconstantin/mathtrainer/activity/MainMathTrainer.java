@@ -77,7 +77,7 @@ public class MainMathTrainer extends AppCompatActivity {
                 operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.MULTIPLICATION));
                 operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.DIVISION));
 
-                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors));
+                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
                 break;
             default:
                 throw new UnknownOperationException();

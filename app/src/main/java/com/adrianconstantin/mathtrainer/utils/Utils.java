@@ -41,6 +41,11 @@ public class Utils {
 
     /**
      *
+     */
+    public static final int MAX_TEST_QUESTIONS = 10;
+
+    /**
+     *
      * @param length
      * @return
      */
