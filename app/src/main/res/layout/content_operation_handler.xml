@@ -33,7 +33,8 @@
             android:textSize="@dimen/operation_text_size"
             android:maxLength="10"
             android:inputType="numberSigned|number"
-            android:layout_toLeftOf="@+id/pencilImg"/>
+            android:layout_toLeftOf="@+id/pencilImg"
+            android:background="@layout/result_edit_text_shape"/>
 
         <ImageButton
             android:id="@+id/pencilImg"
