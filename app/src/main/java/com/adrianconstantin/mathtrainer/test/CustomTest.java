@@ -6,6 +6,7 @@ import android.util.Pair;
 
 import com.adrianconstantin.mathtrainer.base.IOperationHandler;
 import com.adrianconstantin.mathtrainer.base.OperationType;
+import com.adrianconstantin.mathtrainer.exception.TestFinishedException;
 import com.adrianconstantin.mathtrainer.integer.IntegerAdditionHandler;
 import com.adrianconstantin.mathtrainer.integer.IntegerDivisionHandler;
 import com.adrianconstantin.mathtrainer.integer.IntegerMultiplicationHandler;
@@ -85,9 +86,9 @@ public class CustomTest implements ITest, Parcelable {
      * @return
      */
     @Override
-    public IOperationHandler GetNextOperation() {
+    public IOperationHandler GetNextOperation() throws TestFinishedException {
         if (IsFinished()){
-            return null;
+            throw new TestFinishedException("Text has finished. No more operations can be generated.");
         }
 
         Random random = new Random();

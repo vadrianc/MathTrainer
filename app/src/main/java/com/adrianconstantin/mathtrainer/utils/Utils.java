@@ -46,6 +46,11 @@ public class Utils {
 
     /**
      *
+     */
+    public static final String TEST_RESULT = "Result";
+
+    /**
+     *
      * @param length
      * @return
      */

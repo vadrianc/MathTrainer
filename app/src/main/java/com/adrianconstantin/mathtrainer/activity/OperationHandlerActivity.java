@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.base.IOperationHandler;
+import com.adrianconstantin.mathtrainer.exception.TestFinishedException;
 import com.adrianconstantin.mathtrainer.test.ITest;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
@@ -51,14 +53,17 @@ public class OperationHandlerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operation_handler);
 
-        init();
+        try {
+            init();
+        } catch (TestFinishedException e) {
+            finish();
+        }
     }
 
     /**
      *
      */
-    private void init()
-    {
+    private void init() throws TestFinishedException {
         setupToolbar();
         setupEditText();
 
@@ -179,7 +184,25 @@ public class OperationHandlerActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mCurrentOperationHandler = GetOperationHandler();
+                boolean testFinishedExceptionThrown = false;
+
+                try {
+                    mCurrentOperationHandler = GetOperationHandler();
+                } catch (TestFinishedException e) {
+                    testFinishedExceptionThrown = true;
+                }
+
+                if (testFinishedExceptionThrown){
+                    Intent intent = new Intent(OperationHandlerActivity.this, ResultActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(Utils.TEST_RESULT, (Parcelable) mTest.GetResult());
+                    intent.putExtras(bundle);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                    return;
+                }
+
                 mCurrentOperationHandler.GenerateOperands();
                 populateTextView();
                 final EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
@@ -213,7 +236,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
      *
      * @return
      */
-    private IOperationHandler GetOperationHandler() {
+    private IOperationHandler GetOperationHandler() throws TestFinishedException {
         if (mOperationHandler == null && mTest == null) {
             Intent intent = getIntent();
             mOperationHandler = intent.getExtras().getParcelable(Utils.OPERATION);
