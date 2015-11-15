@@ -1,5 +1,7 @@
 package com.adrianconstantin.mathtrainer.base;
 
+import com.adrianconstantin.mathtrainer.utils.Utils;
+
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
@@ -26,5 +28,13 @@ public abstract class SubstractionHandlerBase<T extends Number, R extends IRando
     @Override
     public char GetOperationSymbol() {
         return '-';
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public String GetOperationName() {
+        return Utils.SUBTRACTION;
     }
 }

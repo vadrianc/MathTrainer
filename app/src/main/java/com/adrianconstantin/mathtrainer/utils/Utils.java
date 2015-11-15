@@ -21,6 +21,26 @@ public class Utils {
 
     /**
      *
+     */
+    public static final String ADDITION = "Addition";
+
+    /**
+     *
+     */
+    public static final String DIVISION = "Division";
+
+    /**
+     *
+     */
+    public static final String MULTIPLICATION = "Multiplication";
+
+    /**
+     *
+     */
+    public static final String SUBTRACTION = "Subtraction";
+
+    /**
+     *
      * @param length
      * @return
      */

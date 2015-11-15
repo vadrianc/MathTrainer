@@ -45,15 +45,40 @@ public class OperationHandlerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operation_handler);
-        setupToolbar();
 
         init();
+    }
+
+    /**
+     *
+     */
+    private void init()
+    {
+        setupToolbar();
+        setupEditText();
+        setupTitle();
+
         mCurrentOperationHandler = GetOperationHandler();
 
         populateTextView();
 
         // show the keyboard.
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+    }
+
+    /**
+     *
+     */
+    private void setupTitle(){
+        Intent intent = getIntent();
+
+        if (intent.getExtras().containsKey(Utils.OPERATION)){
+            mOperationHandler = intent.getExtras().getParcelable(Utils.OPERATION);
+            getSupportActionBar().setTitle(mOperationHandler.GetOperationName());
+            return;
+        }
+
+        getSupportActionBar().setTitle(R.string.toolbar_title_test);
     }
 
     /**
@@ -72,8 +97,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
     /**
      *
      */
-    private void init()
-    {
+    private void setupEditText(){
         final EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
         resultEditText.addTextChangedListener(new TextWatcher() {
             @Override

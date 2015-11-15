@@ -1,5 +1,7 @@
 package com.adrianconstantin.mathtrainer.base;
 
+import com.adrianconstantin.mathtrainer.utils.Utils;
+
 /**
  * Created by AdrianConstantin on 10/28/2015.
  */
@@ -26,5 +28,13 @@ public abstract class AdditionHandlerBase<T extends Number, R extends IRandomGen
     @Override
     public char GetOperationSymbol() {
         return '+';
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public String GetOperationName() {
+        return Utils.ADDITION;
     }
 }

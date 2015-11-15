@@ -70,4 +70,10 @@ public interface IOperationHandler<T extends Number, R extends IRandomGenerator<
      * @return
      */
     int GetResultMaxLength();
+
+    /**
+     *
+     * @return
+     */
+    String GetOperationName();
 }

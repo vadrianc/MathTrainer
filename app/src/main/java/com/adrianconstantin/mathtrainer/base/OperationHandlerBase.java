@@ -93,6 +93,12 @@ public abstract class OperationHandlerBase<T extends Number, R extends IRandomGe
     protected abstract void CreateRandomOperands();
 
     /**
+     *
+     * @return
+     */
+    public abstract String GetOperationName();
+
+    /**
      * @return the number of operands.
      */
     @Override
