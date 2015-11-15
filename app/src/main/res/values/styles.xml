@@ -27,7 +27,7 @@
 
     <!-- Toolbar title -->
     <style name="toolbarTextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">32dip</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
         <item name="android:textColor">@color/colorTextTitle</item>
     </style>
 </resources>
