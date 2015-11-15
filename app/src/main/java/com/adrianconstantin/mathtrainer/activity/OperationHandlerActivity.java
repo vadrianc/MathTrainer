@@ -80,8 +80,6 @@ public class OperationHandlerActivity extends AppCompatActivity {
      *
      */
     private void setupTitle(){
-        Intent intent = getIntent();
-
         if (mOperationHandler != null){
             getSupportActionBar().setTitle(mOperationHandler.GetOperationName());
             return;
