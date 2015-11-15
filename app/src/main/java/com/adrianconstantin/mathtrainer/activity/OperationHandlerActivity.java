@@ -41,6 +41,11 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     ITest mTest = null;
 
+    /**
+     *
+     */
+    boolean mBlockResultHandler = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +86,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
     }
 
     /**
-     * 
+     *
      */
     private void updateTitleForTest(){
         if (mTest != null) {
@@ -135,7 +140,8 @@ public class OperationHandlerActivity extends AppCompatActivity {
     {
         if (resultEditText.getText() == null ||
                 resultEditText.getText().toString().equals("") ||
-                resultEditText.getText().toString().equals("-")) return;
+                resultEditText.getText().toString().equals("-") ||
+                mBlockResultHandler == true) return;
 
         int resultLength = mCurrentOperationHandler.ExecuteOperation().toString().length();
         int inputLength = resultEditText.getText().length();
@@ -148,24 +154,36 @@ public class OperationHandlerActivity extends AppCompatActivity {
 
         if (valuesAreEqual) {
             displayConfirmationImage(R.mipmap.ic_thumb_up);
-
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mCurrentOperationHandler = GetOperationHandler();
-                    mCurrentOperationHandler.GenerateOperands();
-                    populateTextView();
-                    final EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
-                    resultEditText.getText().clear();
-                    hideConfirmationImage();
-                    updateTitleForTest();
-                }
-            }, 1000);
+            handleNextOperation();
         }
         else if (lengthsAreEqual || isAnswerGreater) {
             displayConfirmationImage(R.mipmap.ic_thumb_down);
+
+            if (mTest != null) {
+                mBlockResultHandler = true;
+                handleNextOperation();
+            }
         }
+    }
+
+    /**
+     *
+     */
+    private void handleNextOperation(){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mCurrentOperationHandler = GetOperationHandler();
+                mCurrentOperationHandler.GenerateOperands();
+                populateTextView();
+                final EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
+                resultEditText.getText().clear();
+                hideConfirmationImage();
+                updateTitleForTest();
+                mBlockResultHandler = false;
+            }
+        }, 1000);
     }
 
     /**
