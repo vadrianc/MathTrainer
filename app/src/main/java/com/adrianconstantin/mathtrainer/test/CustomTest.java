@@ -109,7 +109,7 @@ public class CustomTest implements ITest, Parcelable {
      */
     @Override
     public String GetProgress() {
-        return String.format("%d / %d", mOperationCount, mMaxOperationCount);
+        return String.format("%d out of %d", mOperationCount, mMaxOperationCount);
     }
 
     /**
