@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:background="@color/colorToolbarBackground"
         app:titleTextAppearance="@style/toolbarTextStyle"/>
-    
+
     <ScrollView android:layout_height="match_parent"
         android:layout_width="match_parent">
 
@@ -38,10 +38,11 @@
                 android:id="@+id/facebookBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/facebook_btn_padding"
                 android:text="Post on Facebook"
                 android:drawableLeft="@drawable/ic_facebook_icon"
-                android:textSize="24sp"
+                android:textSize="@dimen/facebook_btn_text_size"
+                android:background="@android:color/transparent"
                 android:onClick="ButtonClickEvent"/>
 
         </LinearLayout>
