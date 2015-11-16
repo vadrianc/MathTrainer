@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.test.CustomResult;
 import com.adrianconstantin.mathtrainer.utils.Utils;
+import com.facebook.FacebookSdk;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -18,6 +19,8 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         initToolbar();
         displayResult();
