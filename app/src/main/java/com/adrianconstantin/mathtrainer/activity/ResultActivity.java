@@ -3,9 +3,10 @@ package com.adrianconstantin.mathtrainer.activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.adrianconstantin.mathtrainer.R;
@@ -14,6 +15,7 @@ import com.adrianconstantin.mathtrainer.utils.Utils;
 import com.facebook.FacebookSdk;
 
 public class ResultActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,5 +67,12 @@ public class ResultActivity extends AppCompatActivity {
 
         TextView resultTextView = (TextView)findViewById(R.id.resultTextView);
         resultTextView.setText(strBuilder.toString());
+    }
+
+    public void ButtonClickEvent(View view){
+        switch (view.getId()) {
+            case R.id.facebookBtn:
+
+        }
     }
 }
