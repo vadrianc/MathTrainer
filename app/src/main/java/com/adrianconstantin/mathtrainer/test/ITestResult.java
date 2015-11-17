@@ -27,8 +27,9 @@ public interface ITestResult {
      *
      * @param exercise
      * @param answer
+     * @param expectedAnswer
      */
-    void PutIncorrectAnswer(String exercise, String answer);
+    void PutIncorrectAnswer(String exercise, String answer, String expectedAnswer);
 
     /**
      *

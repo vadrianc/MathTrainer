@@ -93,10 +93,11 @@ public class CustomResult implements ITestResult, Parcelable {
      *
      * @param exercise
      * @param answer
+     * @param expectedAnswer
      */
     @Override
-    public void PutIncorrectAnswer(String exercise, String answer) {
-        mIncorrectAnswerList.add(String.format("%s = %s", exercise, answer));
+    public void PutIncorrectAnswer(String exercise, String answer, String expectedAnswer) {
+        mIncorrectAnswerList.add(String.format("%s = %s (expected %s)", exercise, answer, expectedAnswer));
     }
 
     /**
