@@ -42,7 +42,10 @@
                 android:text="Post on Facebook"
                 android:drawableLeft="@drawable/ic_facebook_icon"
                 android:textSize="@dimen/facebook_btn_text_size"
-                android:background="@android:color/transparent"
+                android:background="@layout/button_facebook"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="false"
                 android:onClick="ButtonClickEvent"/>
 
         </LinearLayout>
