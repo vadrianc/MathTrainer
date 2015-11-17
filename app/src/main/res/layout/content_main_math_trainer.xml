@@ -31,8 +31,8 @@
 
             <Button
                 style="@style/ButtonStyle"
-                android:text="@string/subtraction"
-                android:id="@+id/buttonSubtraction"
+                android:text="@string/multiplication"
+                android:id="@+id/buttonMultiplication"
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginRight="@dimen/button_margin_right"
                 android:onClick="ButtonClickEvent"/>
@@ -43,8 +43,8 @@
 
             <Button
                 style="@style/ButtonStyle"
-                android:text="@string/multiplication"
-                android:id="@+id/buttonMultiplication"
+                android:text="@string/subtraction"
+                android:id="@+id/buttonSubtraction"
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginLeft="@dimen/button_margin_left"
                 android:layout_marginRight="@dimen/button_margin_right"
@@ -64,8 +64,29 @@
 
             <Button
                 style="@style/ButtonStyle"
+                android:text="@string/take_a_test_add_sub"
+                android:id="@+id/takeTestButtonAddSub"
+                android:layout_marginTop="@dimen/button_margin"
+                android:layout_marginLeft="@dimen/button_margin_left"
+                android:layout_marginRight="@dimen/button_margin_right"
+                android:onClick="ButtonClickEvent"/>
+
+            <Button
+                style="@style/ButtonStyle"
+                android:text="@string/take_a_test_mul_div"
+                android:id="@+id/takeTestButtonMulDiv"
+                android:layout_marginTop="@dimen/button_margin"
+                android:layout_marginRight="@dimen/button_margin_right"
+                android:onClick="ButtonClickEvent"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                style="@style/ButtonStyle"
                 android:text="@string/take_a_test"
-                android:id="@+id/takeTestButton"
+                android:id="@+id/takeTestButtonAll4"
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginBottom="@dimen/button_margin"
                 android:layout_marginLeft="@dimen/button_margin_left"

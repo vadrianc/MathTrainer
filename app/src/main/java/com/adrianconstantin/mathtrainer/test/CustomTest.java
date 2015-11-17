@@ -93,7 +93,7 @@ public class CustomTest implements ITest, Parcelable {
 
         Random random = new Random();
         mOperationCount++;
-        return mOperations.get(random.nextInt(4));
+        return mOperations.get(random.nextInt(mOperations.size()));
     }
 
     /**

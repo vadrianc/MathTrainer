@@ -55,6 +55,7 @@ public class MainMathTrainer extends AppCompatActivity {
     public void ButtonClickEvent(View view) throws UnknownOperationException, IllegalAccessException, InstantiationException {
         Intent intent = new Intent(this, OperationHandlerActivity.class);
         Bundle bundle = new Bundle();
+        List<Pair<OperandType, OperationType>> operationDescriptors;
 
         switch (view.getId())
         {
@@ -70,10 +71,23 @@ public class MainMathTrainer extends AppCompatActivity {
             case R.id.buttonDivision:
                 bundle.putParcelable(Utils.OPERATION, new NaturalDivisionHandler());
                 break;
-            case R.id.takeTestButton:
-                List<Pair<OperandType, OperationType>> operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
+            case R.id.takeTestButtonAll4:
+                operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
                 operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.ADDITION));
                 operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.SUBSTRACTION));
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.MULTIPLICATION));
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.DIVISION));
+
+                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
+                break;
+            case R.id.takeTestButtonAddSub:
+                operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.ADDITION));
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.SUBSTRACTION));
+                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
+                break;
+            case R.id.takeTestButtonMulDiv:
+                operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
                 operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.MULTIPLICATION));
                 operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.DIVISION));
 
