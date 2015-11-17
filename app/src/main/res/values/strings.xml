@@ -14,4 +14,5 @@
     <string name="divideAction">divide</string>
     <string name="title_activity_operation_handler">Math Trainer</string>
     <string name="toolbar_title_test">Test:</string>
+    <string name="facebook_app_id">929049953848609</string>
 </resources>
