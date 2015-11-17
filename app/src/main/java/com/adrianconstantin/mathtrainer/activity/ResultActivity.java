@@ -66,7 +66,25 @@ public class ResultActivity extends AppCompatActivity {
         }
 
         TextView resultTextView = (TextView)findViewById(R.id.resultTextView);
+        // 3 - stands for string single text lines that can occupy multiple lines in the text view.
+        resultTextView.setLines(countOccurences(strBuilder.toString(), '\n') + 3);
         resultTextView.setText(strBuilder.toString());
+    }
+
+    /**
+     *
+     * @param str
+     * @param ch
+     * @return
+     */
+    private int countOccurences(String str, char ch){
+        int count = 0;
+
+        for (char chr : str.toCharArray()){
+            if (chr == ch) count++;
+        }
+
+        return count;
     }
 
     public void ButtonClickEvent(View view){
