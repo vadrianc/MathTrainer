@@ -16,4 +16,6 @@
     <dimen name="result_text_size">20sp</dimen>
     <dimen name="facebook_btn_text_size">24sp</dimen>
     <dimen name="facebook_btn_padding">16dp</dimen>
+    <dimen name="help_me_btn_width">50dip</dimen>
+    <dimen name="help_me_btn_height">50dip</dimen>
 </resources>

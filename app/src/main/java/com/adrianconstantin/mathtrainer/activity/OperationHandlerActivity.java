@@ -1,7 +1,9 @@
 package com.adrianconstantin.mathtrainer.activity;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -16,7 +18,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.adrianconstantin.mathtrainer.R;
@@ -48,6 +52,16 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     boolean mBlockResultHandler = false;
 
+    /**
+     *
+     */
+    int mWrongAnswerCount = 0;
+
+    /**
+     *
+     */
+    ImageButton mHelpMeButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +88,35 @@ public class OperationHandlerActivity extends AppCompatActivity {
 
         // show the keyboard.
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
+        initHelpMeButton();
+    }
+
+    /**
+     *
+     */
+    private void initHelpMeButton(){
+        mHelpMeButton = new ImageButton(OperationHandlerActivity.this);
+        mHelpMeButton.setId(R.id.helpMeBtn);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params.width = (int) getResources().getDimension(R.dimen.help_me_btn_width);
+        params.height = (int) getResources().getDimension(R.dimen.help_me_btn_height);
+        int margin = (int) getResources().getDimension(R.dimen.control_margin);
+        params.setMargins(margin, margin, margin, margin);
+        mHelpMeButton.setImageResource(R.mipmap.ic_help_me);
+        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        params.addRule(RelativeLayout.CENTER_VERTICAL);
+        mHelpMeButton.setLayoutParams(params);
+        mHelpMeButton.setBackgroundColor(Color.TRANSPARENT);
+
+        mHelpMeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ButtonClickEvent(v);
+            }
+        });
     }
 
     /**
@@ -159,6 +202,9 @@ public class OperationHandlerActivity extends AppCompatActivity {
             if (mTest != null) {
                 mTest.GetResult().PutCorrectAnswer(mCurrentOperationHandler.GetExpression(), resultEditText.getText().toString());
             }
+            else {
+                handleCorrectAnswer();
+            }
 
             displayConfirmationImage(R.mipmap.ic_thumb_up);
             handleNextOperation();
@@ -173,7 +219,44 @@ public class OperationHandlerActivity extends AppCompatActivity {
                 mBlockResultHandler = true;
                 handleNextOperation();
             }
+            else {
+                handleWrongAnswer();
+            }
         }
+        else {
+            hideConfirmationImage();
+        }
+    }
+
+    /**
+     *
+     */
+    private void handleWrongAnswer() {
+        mWrongAnswerCount++;
+
+        if(mWrongAnswerCount == 5) {
+            RelativeLayout layout = (RelativeLayout) findViewById(R.id.editLayout);
+            layout.addView(mHelpMeButton);
+
+            EditText editor = (EditText)findViewById(R.id.resultEditText);
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)editor.getLayoutParams();
+            int margin = (int) getResources().getDimension(R.dimen.control_margin);
+            params.setMargins(margin, margin, 0, margin);
+        }
+    }
+
+    /**
+     *
+     */
+    private void handleCorrectAnswer() {
+        mWrongAnswerCount = 0;
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.editLayout);
+        layout.removeView(mHelpMeButton);
+
+        EditText editor = (EditText)findViewById(R.id.resultEditText);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)editor.getLayoutParams();
+        int margin = (int) getResources().getDimension(R.dimen.control_margin);
+        params.setMargins(margin, margin, margin, margin);
     }
 
     /**
@@ -211,7 +294,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
                 updateTitleForTest();
                 mBlockResultHandler = false;
             }
-        }, 1000);
+        }, 3000);
     }
 
     /**
@@ -269,11 +352,9 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     public void ButtonClickEvent(View view){
         switch (view.getId()) {
-            case R.id.pencilImg:
-                TextView charTextView = (TextView)findViewById(R.id.char_text);
-                charTextView.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+            case R.id.helpMeBtn:
+                EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
+                resultEditText.setText(mCurrentOperationHandler.ExecuteOperation().toString());
         }
     }
 }
