@@ -5,6 +5,8 @@
     <string name="subtraction">Subtraction \n - </string>
     <string name="multiplication">Multiplication \n * </string>
     <string name="division">Division \n / </string>
+    <string name="square_power">Square Power\n <html>X<sup>2</sup></html></string>
+    <string name="square_root">Square Root\n \u221A</string>
     <string name="take_a_test">Take a test \n + - * / </string>
     <string name="take_a_test_add_sub">Take a test \n + - </string>
     <string name="take_a_test_mul_div">Take a test \n * / </string>

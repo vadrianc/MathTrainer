@@ -98,6 +98,28 @@
 
             </TableRow>
 
+            <TableRow>
+
+                <Button
+                    style="@style/ButtonStyle"
+                    android:text="@string/square_power"
+                    android:id="@+id/buttonSquarePower"
+                    android:layout_marginTop="@dimen/button_margin"
+                    android:layout_marginLeft="@dimen/button_margin_left"
+                    android:layout_marginRight="@dimen/button_margin_right"
+                    android:onClick="ButtonClickEvent"/>
+
+                <Button
+                    style="@style/ButtonStyle"
+                    android:text="@string/square_root"
+                    android:id="@+id/buttonSquareRoot"
+                    android:layout_marginTop="@dimen/button_margin"
+                    android:layout_marginRight="@dimen/button_margin_right"
+                    android:layout_height="match_parent"
+                    android:onClick="ButtonClickEvent"/>
+
+            </TableRow>
+
         </TableLayout>
 
     </ScrollView>

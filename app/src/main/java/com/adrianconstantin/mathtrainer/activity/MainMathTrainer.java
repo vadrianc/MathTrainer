@@ -15,6 +15,7 @@ import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
 import com.adrianconstantin.mathtrainer.natural.NaturalAdditionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalDivisionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalMultiplicationHandler;
+import com.adrianconstantin.mathtrainer.natural.NaturalSquarePowerHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalSubtractionHanlder;
 import com.adrianconstantin.mathtrainer.setting.OperandType;
 import com.adrianconstantin.mathtrainer.test.CustomTest;
@@ -92,6 +93,11 @@ public class MainMathTrainer extends AppCompatActivity {
                 operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.DIVISION));
 
                 bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
+                break;
+            case R.id.buttonSquarePower:
+                bundle.putParcelable(Utils.OPERATION, new NaturalSquarePowerHandler());
+                break;
+            case R.id.buttonSquareRoot:
                 break;
             default:
                 throw new UnknownOperationException();
