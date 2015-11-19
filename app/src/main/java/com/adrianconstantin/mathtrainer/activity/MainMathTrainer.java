@@ -99,6 +99,12 @@ public class MainMathTrainer extends AppCompatActivity {
                 break;
             case R.id.buttonSquareRoot:
                 break;
+            case R.id.takeTestSquarePowerAndRoot:
+                operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.POWER));
+
+                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
+                break;
             default:
                 throw new UnknownOperationException();
         }

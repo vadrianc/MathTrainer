@@ -120,6 +120,20 @@
 
             </TableRow>
 
+            <TableRow>
+
+                <Button
+                    style="@style/ButtonStyle"
+                    android:text="@string/take_a_test_square_power_root"
+                    android:id="@+id/takeTestSquarePowerAndRoot"
+                    android:layout_marginTop="@dimen/button_margin"
+                    android:layout_marginBottom="@dimen/button_margin"
+                    android:layout_marginLeft="@dimen/button_margin_left"
+                    android:layout_marginRight="@dimen/button_margin_right"
+                    android:onClick="ButtonClickEvent"/>
+
+            </TableRow>
+
         </TableLayout>
 
     </ScrollView>
