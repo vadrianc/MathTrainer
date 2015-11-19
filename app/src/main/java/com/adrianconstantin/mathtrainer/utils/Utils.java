@@ -42,6 +42,11 @@ public class Utils {
     /**
      *
      */
+    public static final String SQUARE_POWER = "Square Power";
+
+    /**
+     *
+     */
     public static final int MAX_TEST_QUESTIONS = 10;
 
     /**

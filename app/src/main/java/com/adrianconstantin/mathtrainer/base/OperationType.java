@@ -22,5 +22,10 @@ public enum OperationType {
     /**
      * Division operation.
      */
-    DIVISION
+    DIVISION,
+
+    /**
+     * Power operation.
+     */
+    POWER
 }
