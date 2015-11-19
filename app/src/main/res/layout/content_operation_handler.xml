@@ -26,6 +26,7 @@
                 android:id="@+id/char_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/operation_text_padding"
                 android:layout_marginTop="@dimen/title_margin"
                 android:textSize="@dimen/operation_text_size"/>
 

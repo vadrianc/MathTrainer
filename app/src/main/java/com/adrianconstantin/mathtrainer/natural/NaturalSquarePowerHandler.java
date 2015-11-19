@@ -17,7 +17,7 @@ public class NaturalSquarePowerHandler extends PowerHandlerBase<Integer, Integer
     /**
      *
      */
-    private final int RESULT_MAX_LENGTH = 3;
+    private final int RESULT_MAX_LENGTH = 4;
 
     /**
      *

@@ -1,7 +1,5 @@
 package com.adrianconstantin.mathtrainer.activity;
 
-import android.app.ActionBar;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -12,11 +10,11 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -275,7 +273,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
                     testFinishedExceptionThrown = true;
                 }
 
-                if (testFinishedExceptionThrown){
+                if (testFinishedExceptionThrown) {
                     Intent intent = new Intent(OperationHandlerActivity.this, ResultActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(Utils.TEST_RESULT, (Parcelable) mTest.GetResult());
@@ -288,7 +286,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
 
                 mCurrentOperationHandler.GenerateOperands();
                 populateTextView();
-                final EditText resultEditText = (EditText)findViewById(R.id.resultEditText);
+                final EditText resultEditText = (EditText) findViewById(R.id.resultEditText);
                 resultEditText.getText().clear();
                 hideConfirmationImage();
                 updateTitleForTest();
@@ -336,7 +334,13 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     private void populateTextView(){
         TextView charTextView = (TextView)findViewById(R.id.char_text);
-        charTextView.setText(mCurrentOperationHandler.GetExpression());
+
+        if (mCurrentOperationHandler.GetOperationSymbol() != 0) {
+            charTextView.setText(mCurrentOperationHandler.GetExpression());
+        }
+        else {
+            charTextView.setText(Html.fromHtml(mCurrentOperationHandler.GetExpression()));
+        }
 
         TextView resultEditText = (TextView)findViewById(R.id.resultEditText);
 
