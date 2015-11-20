@@ -27,5 +27,10 @@ public enum OperationType {
     /**
      * Power operation.
      */
-    POWER
+    POWER,
+
+    /**
+     * Root operation.
+     */
+    ROOT
 }

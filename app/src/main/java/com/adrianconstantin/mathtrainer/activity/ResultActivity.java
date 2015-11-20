@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -68,7 +69,14 @@ public class ResultActivity extends AppCompatActivity {
         TextView resultTextView = (TextView)findViewById(R.id.resultTextView);
         // 3 - stands for string single text lines that can occupy multiple lines in the text view.
         resultTextView.setLines(countOccurences(strBuilder.toString(), '\n') + 3);
-        resultTextView.setText(strBuilder.toString());
+        String resultText = strBuilder.toString();
+        if (resultText.contains("<br>")){
+            resultText = resultText.replace("\n", "<br>");
+            resultTextView.setText(Html.fromHtml("<html>" + resultText + "</html>"));
+        }
+        else {
+            resultTextView.setText(resultText);
+        }
     }
 
     /**

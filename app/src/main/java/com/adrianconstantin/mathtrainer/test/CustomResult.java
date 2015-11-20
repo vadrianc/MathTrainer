@@ -72,8 +72,16 @@ public class CustomResult implements ITestResult, Parcelable {
         StringBuilder strBuilder = new StringBuilder();
 
         for (String answer : answerList){
-            strBuilder.append(answer);
-            strBuilder.append("\n");
+            if (answer.contains("<html>")) {
+                answer = answer.replace("<html>", "");
+                answer = answer.replace("</html>", "");
+                answer += "<br>";
+                strBuilder.append(answer);
+            }
+            else {
+                strBuilder.append(answer);
+                strBuilder.append("\n");
+            }
         }
 
         return strBuilder.toString();

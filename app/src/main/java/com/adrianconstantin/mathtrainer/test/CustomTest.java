@@ -14,6 +14,8 @@ import com.adrianconstantin.mathtrainer.integer.IntegerSubtractionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalAdditionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalDivisionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalMultiplicationHandler;
+import com.adrianconstantin.mathtrainer.natural.NaturalSquarePowerHandler;
+import com.adrianconstantin.mathtrainer.natural.NaturalSquareRootHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalSubtractionHanlder;
 import com.adrianconstantin.mathtrainer.setting.OperandType;
 import com.adrianconstantin.mathtrainer.utils.Utils;
@@ -151,6 +153,12 @@ public class CustomTest implements ITest, Parcelable {
                 break;
             case DIVISION:
                 mOperations.add(new NaturalDivisionHandler());
+                break;
+            case POWER:
+                mOperations.add(new NaturalSquarePowerHandler());
+                break;
+            case ROOT:
+                mOperations.add(new NaturalSquareRootHandler());
                 break;
         }
     }

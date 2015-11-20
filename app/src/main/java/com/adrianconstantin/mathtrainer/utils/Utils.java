@@ -47,6 +47,11 @@ public class Utils {
     /**
      *
      */
+    public static final String SQUARE_ROOT = "Square Root";
+
+    /**
+     *
+     */
     public static final int MAX_TEST_QUESTIONS = 10;
 
     /**

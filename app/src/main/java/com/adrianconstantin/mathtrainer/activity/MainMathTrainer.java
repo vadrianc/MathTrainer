@@ -16,6 +16,7 @@ import com.adrianconstantin.mathtrainer.natural.NaturalAdditionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalDivisionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalMultiplicationHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalSquarePowerHandler;
+import com.adrianconstantin.mathtrainer.natural.NaturalSquareRootHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalSubtractionHanlder;
 import com.adrianconstantin.mathtrainer.setting.OperandType;
 import com.adrianconstantin.mathtrainer.test.CustomTest;
@@ -98,10 +99,12 @@ public class MainMathTrainer extends AppCompatActivity {
                 bundle.putParcelable(Utils.OPERATION, new NaturalSquarePowerHandler());
                 break;
             case R.id.buttonSquareRoot:
+                bundle.putParcelable(Utils.OPERATION, new NaturalSquareRootHandler());
                 break;
             case R.id.takeTestSquarePowerAndRoot:
                 operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
                 operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.POWER));
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.ROOT));
 
                 bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
                 break;
