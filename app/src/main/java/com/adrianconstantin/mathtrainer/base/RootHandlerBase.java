@@ -29,9 +29,9 @@ public abstract class RootHandlerBase<T extends Number, R extends IRandomGenerat
     public String GetExpression() {
         StringBuilder expression = new StringBuilder();
 
-        expression.append("&radic;<span style=\"text-decoration: overline\">");
+        expression.append("&radic;<span style=\"text-decoration: overline\"><small>");
         expression.append(mOperandParser.GetFirstOperandString());
-        expression.append("</span>");
+        expression.append("</small></span>");
 
         return expression.toString();
     }
