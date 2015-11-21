@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import com.adrianconstantin.mathtrainer.R;
+import com.adrianconstantin.mathtrainer.setting.OperandType;
 import com.adrianconstantin.mathtrainer.setting.OperationDifficulty;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 
@@ -21,6 +22,7 @@ public class OptionsActivity extends AppCompatActivity {
 
         initToolbar();
         initDifficultyButton();
+        initOperandTypeButton();
     }
 
     /**
@@ -60,6 +62,24 @@ public class OptionsActivity extends AppCompatActivity {
 
     /**
      *
+     */
+    private void initOperandTypeButton(){
+        RadioButton operandTypeBtn = null;
+
+        switch (OperationSettings.Instance().GetOperandType()){
+            case NATURAL:
+                operandTypeBtn = (RadioButton) findViewById(R.id.radio_natural);
+                break;
+            case INTEGER:
+                operandTypeBtn = (RadioButton) findViewById(R.id.radio_integer);
+                break;
+        }
+
+        operandTypeBtn.setChecked(true);
+    }
+
+    /**
+     *
      * @param view
      */
     public void onRadioButtonClicked(View view) {
@@ -78,6 +98,12 @@ public class OptionsActivity extends AppCompatActivity {
                 break;
             case R.id.radio_hard:
                 OperationSettings.Instance().SetOperationDifficulty(OperationDifficulty.HARD);
+                break;
+            case R.id.radio_natural:
+                OperationSettings.Instance().SetOperandType(OperandType.NATURAL);
+                break;
+            case R.id.radio_integer:
+                OperationSettings.Instance().SetOperandType(OperandType.INTEGER);
                 break;
         }
     }

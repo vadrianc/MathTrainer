@@ -51,7 +51,7 @@ public class OperationSettings {
      *
      * @return
      */
-    public OperandType GetmOperandType() {
+    public OperandType GetOperandType() {
         return mOperandType;
     }
 
@@ -60,7 +60,7 @@ public class OperationSettings {
      *
      * @param mOperandType
      */
-    public void SetmOperandType(OperandType mOperandType) {
+    public void SetOperandType(OperandType mOperandType) {
         this.mOperandType = mOperandType;
     }
 

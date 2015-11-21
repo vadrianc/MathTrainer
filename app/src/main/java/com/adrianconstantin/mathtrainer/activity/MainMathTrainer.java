@@ -13,6 +13,10 @@ import android.view.View;
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.base.OperationType;
 import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
+import com.adrianconstantin.mathtrainer.integer.IntegerAdditionHandler;
+import com.adrianconstantin.mathtrainer.integer.IntegerDivisionHandler;
+import com.adrianconstantin.mathtrainer.integer.IntegerMultiplicationHandler;
+import com.adrianconstantin.mathtrainer.integer.IntegerSubtractionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalAdditionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalDivisionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalMultiplicationHandler;
@@ -20,6 +24,7 @@ import com.adrianconstantin.mathtrainer.natural.NaturalSquarePowerHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalSquareRootHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalSubtractionHanlder;
 import com.adrianconstantin.mathtrainer.setting.OperandType;
+import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 import com.adrianconstantin.mathtrainer.test.CustomTest;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
@@ -63,10 +68,32 @@ public class MainMathTrainer extends AppCompatActivity {
      */
     public void ButtonClickEvent(View view) throws UnknownOperationException, IllegalAccessException, InstantiationException {
         Intent intent = new Intent(this, OperationHandlerActivity.class);
-        Bundle bundle = new Bundle();
-        List<Pair<OperandType, OperationType>> operationDescriptors;
+        Bundle bundle = null;
 
-        switch (view.getId())
+        switch (OperationSettings.Instance().GetOperandType()) {
+            case NATURAL:
+                bundle = handleNaturalOperation(view.getId());
+                break;
+            case INTEGER:
+                bundle = handleIntegerOperation(view.getId());
+                break;
+        }
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws UnknownOperationException
+     */
+    private Bundle handleNaturalOperation(int id) throws UnknownOperationException {
+        List<Pair<OperandType, OperationType>> operationDescriptors;
+        Bundle bundle = new Bundle();
+
+        switch (id)
         {
             case R.id.buttonAddition:
                 bundle.putParcelable(Utils.OPERATION, new NaturalAdditionHandler());
@@ -118,8 +145,73 @@ public class MainMathTrainer extends AppCompatActivity {
             default:
                 throw new UnknownOperationException();
         }
-        intent.putExtras(bundle);
 
-        startActivity(intent);
+        return bundle;
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws UnknownOperationException
+     */
+    private Bundle handleIntegerOperation(int id) throws UnknownOperationException {
+        List<Pair<OperandType, OperationType>> operationDescriptors;
+        Bundle bundle = new Bundle();
+
+        switch (id)
+        {
+            case R.id.buttonAddition:
+                bundle.putParcelable(Utils.OPERATION, new IntegerAdditionHandler());
+                break;
+            case R.id.buttonSubtraction:
+                bundle.putParcelable(Utils.OPERATION, new IntegerSubtractionHandler());
+                break;
+            case R.id.buttonMultiplication:
+                bundle.putParcelable(Utils.OPERATION, new IntegerMultiplicationHandler());
+                break;
+            case R.id.buttonDivision:
+                bundle.putParcelable(Utils.OPERATION, new IntegerDivisionHandler());
+                break;
+            case R.id.takeTestButtonAll4:
+                operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
+                operationDescriptors.add(new Pair(OperandType.INTEGER, OperationType.ADDITION));
+                operationDescriptors.add(new Pair(OperandType.INTEGER, OperationType.SUBSTRACTION));
+                operationDescriptors.add(new Pair(OperandType.INTEGER, OperationType.MULTIPLICATION));
+                operationDescriptors.add(new Pair(OperandType.INTEGER, OperationType.DIVISION));
+
+                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
+                break;
+            case R.id.takeTestButtonAddSub:
+                operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
+                operationDescriptors.add(new Pair(OperandType.INTEGER, OperationType.ADDITION));
+                operationDescriptors.add(new Pair(OperandType.INTEGER, OperationType.SUBSTRACTION));
+                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
+                break;
+            case R.id.takeTestButtonMulDiv:
+                operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
+                operationDescriptors.add(new Pair(OperandType.INTEGER, OperationType.MULTIPLICATION));
+                operationDescriptors.add(new Pair(OperandType.INTEGER, OperationType.DIVISION));
+
+                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
+                break;
+            case R.id.buttonSquarePower:
+                bundle.putParcelable(Utils.OPERATION, new NaturalSquarePowerHandler());
+                break;
+            case R.id.buttonSquareRoot:
+                bundle.putParcelable(Utils.OPERATION, new NaturalSquareRootHandler());
+                break;
+            case R.id.takeTestSquarePowerAndRoot:
+                operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.POWER));
+                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.ROOT));
+
+                bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
+                break;
+            default:
+                throw new UnknownOperationException();
+        }
+
+        return bundle;
     }
 }

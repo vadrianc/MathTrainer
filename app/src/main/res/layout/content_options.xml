@@ -54,4 +54,40 @@
 
     </RadioGroup>
 
+
+    <TextView
+        android:id="@+id/operandTypeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/operation_text_padding"
+        android:layout_marginRight="@dimen/button_margin"
+        android:layout_marginTop="@dimen/button_margin"
+        android:layout_marginLeft="@dimen/button_margin"
+        android:textSize="@dimen/option_title_text_size"
+        android:text="@string/operand_type_option"/>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/button_margin"
+        android:layout_marginBottom="@dimen/button_margin"
+        android:layout_marginLeft="@dimen/button_margin">
+
+        <RadioButton android:id="@+id/radio_natural"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/option_text_size"
+            android:text="@string/operand_type_natural"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton android:id="@+id/radio_integer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/option_text_size"
+            android:text="@string/operand_type_integer"
+            android:onClick="onRadioButtonClicked"/>
+
+    </RadioGroup>
+
 </LinearLayout>
