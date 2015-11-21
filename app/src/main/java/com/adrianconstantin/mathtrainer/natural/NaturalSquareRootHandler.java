@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.adrianconstantin.mathtrainer.base.RootHandlerBase;
 import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
+import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
 /**
@@ -12,11 +13,6 @@ import com.adrianconstantin.mathtrainer.utils.Utils;
  */
 public class NaturalSquareRootHandler extends RootHandlerBase<Integer, IntegerRandomGenerator, NaturalOperandParser>
         implements Parcelable {
-
-    /**
-     *
-     */
-    private final int RESULT_MAX_LENGTH = 4;
 
     /**
      *
@@ -79,7 +75,7 @@ public class NaturalSquareRootHandler extends RootHandlerBase<Integer, IntegerRa
      */
     @Override
     public int GetResultMaxLength() {
-        return RESULT_MAX_LENGTH;
+        return OperationSettings.Instance().GetMaximumDigits();
     }
 
     /**

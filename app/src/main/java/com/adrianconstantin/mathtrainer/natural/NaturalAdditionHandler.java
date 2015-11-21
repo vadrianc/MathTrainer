@@ -17,11 +17,6 @@ public class NaturalAdditionHandler extends AdditionHandlerBase<Integer, Integer
     /**
      *
      */
-    private final int RESULT_MAX_LENGTH = 3;
-
-    /**
-     *
-     */
     public NaturalAdditionHandler() {
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits()));
@@ -94,7 +89,7 @@ public class NaturalAdditionHandler extends AdditionHandlerBase<Integer, Integer
      */
     @Override
     public int GetResultMaxLength() {
-        return RESULT_MAX_LENGTH;
+        return OperationSettings.Instance().GetMaximumDigits() + 1;
     }
 
     /**

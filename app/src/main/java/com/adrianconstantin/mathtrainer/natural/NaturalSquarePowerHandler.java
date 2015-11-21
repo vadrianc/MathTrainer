@@ -17,11 +17,6 @@ public class NaturalSquarePowerHandler extends PowerHandlerBase<Integer, Integer
     /**
      *
      */
-    private final int RESULT_MAX_LENGTH = 4;
-
-    /**
-     *
-     */
     public NaturalSquarePowerHandler(){
         super();
         mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits()));
@@ -87,7 +82,7 @@ public class NaturalSquarePowerHandler extends PowerHandlerBase<Integer, Integer
      */
     @Override
     public int GetResultMaxLength() {
-        return RESULT_MAX_LENGTH;
+        return OperationSettings.Instance().GetMaximumDigits() * 2;
     }
 
     /**

@@ -99,6 +99,12 @@ public abstract class OperationHandlerBase<T extends Number, R extends IRandomGe
     public abstract String GetOperationName();
 
     /**
+     *
+     * @return
+     */
+    public abstract int GetResultMaxLength();
+
+    /**
      * @return the number of operands.
      */
     @Override

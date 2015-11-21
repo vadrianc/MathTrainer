@@ -13,10 +13,6 @@ import com.adrianconstantin.mathtrainer.utils.Utils;
  */
 public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Integer, IntegerRandomGenerator, NaturalOperandParser>
         implements Parcelable{
-    /**
-     *
-     */
-    private final int RESULT_MAX_LENGTH = 4;
 
     /**
      *
@@ -94,7 +90,7 @@ public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Inte
      */
     @Override
     public int GetResultMaxLength() {
-        return RESULT_MAX_LENGTH;
+        return OperationSettings.Instance().GetMaximumDigits() * 2;
     }
 
     /**
