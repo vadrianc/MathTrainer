@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import com.adrianconstantin.mathtrainer.R;
+import com.adrianconstantin.mathtrainer.setting.OperationDifficulty;
+import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -18,6 +20,7 @@ public class OptionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_options);
 
         initToolbar();
+        initDifficultyButton();
     }
 
     /**
@@ -36,22 +39,46 @@ public class OptionsActivity extends AppCompatActivity {
 
     /**
      *
+     */
+    private void initDifficultyButton(){
+        RadioButton difficultyBtn = null;
+
+        switch (OperationSettings.Instance().GetOperationDifficulty()){
+            case EASY:
+                difficultyBtn = (RadioButton) findViewById(R.id.radio_easy);
+                break;
+            case NORMAL:
+                difficultyBtn = (RadioButton) findViewById(R.id.radio_normal);
+                break;
+            case HARD:
+                difficultyBtn = (RadioButton) findViewById(R.id.radio_hard);
+                break;
+        }
+
+        difficultyBtn.setChecked(true);
+    }
+
+    /**
+     *
      * @param view
      */
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
+        if (!checked) return;
+
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_easy:
+                OperationSettings.Instance().SetOperationDifficulty(OperationDifficulty.EASY);
                 break;
             case R.id.radio_normal:
+                OperationSettings.Instance().SetOperationDifficulty(OperationDifficulty.NORMAL);
                 break;
             case R.id.radio_hard:
+                OperationSettings.Instance().SetOperationDifficulty(OperationDifficulty.HARD);
                 break;
         }
-
-
     }
 }

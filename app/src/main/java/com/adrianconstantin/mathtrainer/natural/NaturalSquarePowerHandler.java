@@ -24,7 +24,7 @@ public class NaturalSquarePowerHandler extends PowerHandlerBase<Integer, Integer
      */
     public NaturalSquarePowerHandler(){
         super();
-        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
+        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits()));
         mSecondOperand = 2;
         GenerateOperands();
     }
@@ -38,7 +38,7 @@ public class NaturalSquarePowerHandler extends PowerHandlerBase<Integer, Integer
         mFirstOperand = in.readInt();
         mSecondOperand = 2;
         mOperandParser = new NaturalOperandParser(this);
-        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
+        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits()));
     }
 
     /**

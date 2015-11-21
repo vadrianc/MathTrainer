@@ -12,26 +12,43 @@
         android:background="@color/colorToolbarBackground"
         app:titleTextAppearance="@style/toolbarTextStyle"/>
 
+    <TextView
+        android:id="@+id/difficultyOptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/operation_text_padding"
+        android:layout_marginRight="@dimen/button_margin"
+        android:layout_marginTop="@dimen/button_margin"
+        android:layout_marginLeft="@dimen/button_margin"
+        android:textSize="@dimen/option_title_text_size"
+        android:text="@string/difficulty_option"/>
+
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/button_margin"
+        android:layout_marginBottom="@dimen/button_margin"
+        android:layout_marginLeft="@dimen/button_margin">
 
         <RadioButton android:id="@+id/radio_easy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/option_text_size"
             android:text="@string/difficulty_easy"
             android:onClick="onRadioButtonClicked"/>
 
         <RadioButton android:id="@+id/radio_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/option_text_size"
             android:text="@string/difficulty_normal"
             android:onClick="onRadioButtonClicked"/>
 
         <RadioButton android:id="@+id/radio_hard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/option_text_size"
             android:text="@string/difficulty_hard"
             android:onClick="onRadioButtonClicked"/>
 

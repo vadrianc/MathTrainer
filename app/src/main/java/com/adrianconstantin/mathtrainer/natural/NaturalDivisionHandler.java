@@ -23,7 +23,7 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
      */
     public NaturalDivisionHandler() {
         super();
-        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
+        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits()));
         GenerateOperands();
     }
 
@@ -36,7 +36,7 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
         mFirstOperand = in.readInt();
         mSecondOperand = in.readInt();
         mOperandParser = new NaturalOperandParser(this);
-        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetmMaximumDigits()));
+        mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits()));
     }
 
     /**
