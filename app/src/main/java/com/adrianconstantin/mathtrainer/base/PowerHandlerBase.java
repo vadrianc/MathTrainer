@@ -31,9 +31,9 @@ public abstract class PowerHandlerBase<T extends Number, R extends IRandomGenera
 
         expression.append("<html>");
         expression.append(mOperandParser.GetFirstOperandString());
-        expression.append("<sup>");
+        expression.append("<sup><small>");
         expression.append(mOperandParser.GetSecondOperandString());
-        expression.append("</sup>");
+        expression.append("</small></sup>");
         expression.append("</html>");
 
         return expression.toString();
