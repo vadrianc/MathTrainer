@@ -8,21 +8,27 @@ import java.util.Random;
  * Created by AdrianConstantin on 11/9/2015.
  */
 public class SignGenerator {
+    /**
+     *
+     */
+    private static Random sRand = new Random(100);
+
+    /**
+     *
+     * @param handler
+     */
     public static void ApplySignsToIntegers(IOperationHandler handler){
         Integer firstOperand = (Integer)handler.GetFirstOperand();
         Integer secondOperand = (Integer)handler.GetSecondOperand();
 
-        Random randSign = new Random(1);
-        boolean isPlus = randSign.nextBoolean();
-
-        if (!isPlus) {
-            firstOperand = -1 * firstOperand;
+        int number = sRand.nextInt();
+        if (number % 2 != 0) {
+            firstOperand *= (-1);
         }
 
-        isPlus = randSign.nextBoolean();
-
-        if (!isPlus){
-            secondOperand = -1 * secondOperand;
+        number = sRand.nextInt();
+        if (number % 2 != 0) {
+            secondOperand *= (-1);
         }
 
         handler.SetFirstOperand(firstOperand);
