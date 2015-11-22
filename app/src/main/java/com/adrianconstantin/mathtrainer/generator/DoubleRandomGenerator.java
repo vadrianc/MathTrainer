@@ -28,12 +28,10 @@ public class DoubleRandomGenerator extends RandomGeneratorBase<Double> {
     }
 
     /**
-     * Generated random double.
-     *
-     * @return the random double.
+     * @return
      */
     @Override
-    public Double Generate() {
+    protected Double GenerateNumber() {
         return mRandom.nextInt(mMaximum) * mRandom.nextDouble();
     }
 }

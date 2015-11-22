@@ -1,15 +1,23 @@
 package com.adrianconstantin.mathtrainer.base;
 
 import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Created by AdrianConstantin on 11/1/2015.
  */
 public abstract class RandomGeneratorBase<T extends Number> implements IRandomGenerator<T> {
+    protected final int MAX_HISTORY_CAPACITY = 7;
+
     /**
      * Random generator.
      */
     protected Random mRandom = null;
+
+    /**
+     * The list of previously generated values.
+     */
+    protected ArrayBlockingQueue<T> mHistory;
 
     /**
      * The maximum limit for the generated number.
@@ -25,6 +33,7 @@ public abstract class RandomGeneratorBase<T extends Number> implements IRandomGe
     {
         mRandom = new Random();
         mMaximum = maximum;
+        mHistory = new ArrayBlockingQueue<T>(MAX_HISTORY_CAPACITY);
     }
 
     /**
@@ -38,6 +47,7 @@ public abstract class RandomGeneratorBase<T extends Number> implements IRandomGe
     {
         mRandom = new Random(seed);
         mMaximum = maximum;
+        mHistory = new ArrayBlockingQueue<T>(MAX_HISTORY_CAPACITY);
     }
 
     /**
@@ -46,7 +56,32 @@ public abstract class RandomGeneratorBase<T extends Number> implements IRandomGe
      * @return the random number.
      */
     @Override
-    public abstract T Generate();
+    public T Generate() {
+        T result;
+        final int maxAttempts = 50;
+        int currentAttempt = 0;
+
+        do {
+            result = GenerateNumber();
+            currentAttempt++;
+            if (currentAttempt == maxAttempts) break;
+        }
+        while (mHistory.contains(result));
+
+        if (mHistory.size() == MAX_HISTORY_CAPACITY){
+            mHistory.poll();
+        }
+
+        mHistory.add(result);
+
+        return result;
+    }
+
+    /**
+     *
+     * @return
+     */
+    protected abstract T GenerateNumber();
 
     /**
      *

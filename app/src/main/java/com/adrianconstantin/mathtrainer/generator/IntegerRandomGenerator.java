@@ -29,12 +29,10 @@ public class IntegerRandomGenerator extends RandomGeneratorBase<Integer> {
     }
 
     /**
-     * Generated random integer.
-     *
-     * @return the random integer.
+     * @return
      */
     @Override
-    public Integer Generate() {
+    protected Integer GenerateNumber() {
         return mRandom.nextInt(mMaximum);
     }
 }
