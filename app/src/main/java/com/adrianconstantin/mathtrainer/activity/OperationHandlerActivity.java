@@ -192,7 +192,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
 
         int userInput = Integer.parseInt(resultEditText.getText().toString());
 
-        boolean lengthsAreEqual = resultLength == inputLength;
+        boolean showConfirmation = resultLength <= inputLength;
         boolean valuesAreEqual = (Integer)mCurrentOperationHandler.ExecuteOperation() == userInput;
 
         if (valuesAreEqual) {
@@ -206,7 +206,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
             displayConfirmationImage(R.mipmap.ic_thumb_up);
             handleNextOperation();
         }
-        else if (lengthsAreEqual) {
+        else if (showConfirmation) {
             displayConfirmationImage(R.mipmap.ic_thumb_down);
 
             if (mTest != null) {
