@@ -92,7 +92,7 @@ public class NaturalSubtractionHanlder extends SubstractionHandlerBase<Integer, 
      */
     @Override
     public int GetResultMaxLength() {
-        return OperationSettings.Instance().GetMaximumDigits();
+        return OperationSettings.Instance().GetMaximumDigits() + 1;
     }
 
     /**
