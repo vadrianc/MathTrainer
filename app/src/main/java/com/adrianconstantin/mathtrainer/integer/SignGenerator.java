@@ -18,20 +18,37 @@ public class SignGenerator {
      * @param handler
      */
     public static void ApplySignsToIntegers(IOperationHandler handler){
+        ApplySignToFirstOperand(handler);
+        ApplySignToSecondOperand(handler);
+    }
+
+    /**
+     *
+     * @param handler
+     */
+    public static void ApplySignToFirstOperand(IOperationHandler handler){
         Integer firstOperand = (Integer)handler.GetFirstOperand();
-        Integer secondOperand = (Integer)handler.GetSecondOperand();
 
         int number = sRand.nextInt();
         if (number % 2 != 0) {
             firstOperand *= (-1);
         }
 
-        number = sRand.nextInt();
+        handler.SetFirstOperand(firstOperand);
+    }
+
+    /**
+     *
+     * @param handler
+     */
+    public static void ApplySignToSecondOperand(IOperationHandler handler) {
+        Integer secondOperand = (Integer)handler.GetSecondOperand();
+
+        int number = sRand.nextInt();
         if (number % 2 != 0) {
             secondOperand *= (-1);
         }
 
-        handler.SetFirstOperand(firstOperand);
         handler.SetSecondOperand(secondOperand);
     }
 }

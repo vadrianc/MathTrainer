@@ -16,6 +16,7 @@ import com.adrianconstantin.mathtrainer.exception.UnknownOperationException;
 import com.adrianconstantin.mathtrainer.integer.IntegerAdditionHandler;
 import com.adrianconstantin.mathtrainer.integer.IntegerDivisionHandler;
 import com.adrianconstantin.mathtrainer.integer.IntegerMultiplicationHandler;
+import com.adrianconstantin.mathtrainer.integer.IntegerSquarePowerHandler;
 import com.adrianconstantin.mathtrainer.integer.IntegerSubtractionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalAdditionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalDivisionHandler;
@@ -196,14 +197,14 @@ public class MainMathTrainer extends AppCompatActivity {
                 bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));
                 break;
             case R.id.buttonSquarePower:
-                bundle.putParcelable(Utils.OPERATION, new NaturalSquarePowerHandler());
+                bundle.putParcelable(Utils.OPERATION, new IntegerSquarePowerHandler());
                 break;
             case R.id.buttonSquareRoot:
                 bundle.putParcelable(Utils.OPERATION, new NaturalSquareRootHandler());
                 break;
             case R.id.takeTestSquarePowerAndRoot:
                 operationDescriptors = new ArrayList<Pair<OperandType, OperationType>>();
-                operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.POWER));
+                operationDescriptors.add(new Pair(OperandType.INTEGER, OperationType.POWER));
                 operationDescriptors.add(new Pair(OperandType.NATURAL, OperationType.ROOT));
 
                 bundle.putParcelable(Utils.TEST, new CustomTest(operationDescriptors, Utils.MAX_TEST_QUESTIONS));

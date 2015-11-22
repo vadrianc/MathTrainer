@@ -10,6 +10,7 @@ import com.adrianconstantin.mathtrainer.exception.TestFinishedException;
 import com.adrianconstantin.mathtrainer.integer.IntegerAdditionHandler;
 import com.adrianconstantin.mathtrainer.integer.IntegerDivisionHandler;
 import com.adrianconstantin.mathtrainer.integer.IntegerMultiplicationHandler;
+import com.adrianconstantin.mathtrainer.integer.IntegerSquarePowerHandler;
 import com.adrianconstantin.mathtrainer.integer.IntegerSubtractionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalAdditionHandler;
 import com.adrianconstantin.mathtrainer.natural.NaturalDivisionHandler;
@@ -180,6 +181,9 @@ public class CustomTest implements ITest, Parcelable {
                 break;
             case DIVISION:
                 mOperations.add(new IntegerDivisionHandler());
+                break;
+            case POWER:
+                mOperations.add(new IntegerSquarePowerHandler());
                 break;
         }
     }
