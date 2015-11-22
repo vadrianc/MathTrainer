@@ -55,6 +55,6 @@ public class IntegerSubtractionHandler extends NaturalSubtractionHanlder impleme
      */
     @Override
     public int GetResultMaxLength() {
-        return super.GetResultMaxLength() + 1;
+        return super.GetResultMaxLength() + 2;
     }
 }
