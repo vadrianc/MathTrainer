@@ -1,5 +1,8 @@
 package com.adrianconstantin.mathtrainer.activity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,9 +14,12 @@ import android.widget.RadioButton;
 import android.widget.TimePicker;
 
 import com.adrianconstantin.mathtrainer.R;
+import com.adrianconstantin.mathtrainer.notification.NotificationReceiver;
 import com.adrianconstantin.mathtrainer.setting.OperandType;
 import com.adrianconstantin.mathtrainer.setting.OperationDifficulty;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
+
+import java.util.Calendar;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -39,6 +45,13 @@ public class OptionsActivity extends AppCompatActivity {
         final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         upArrow.setColorFilter(getResources().getColor(R.color.colorTextTitle), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNotification();
+                finish();
+            }
+        });
     }
 
     /**
@@ -120,5 +133,28 @@ public class OptionsActivity extends AppCompatActivity {
             CheckBox notificationCheckBox = (CheckBox)findViewById(R.id.notificationCheckBox);
             timePicker.setEnabled(notificationCheckBox.isChecked());
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        createNotification();
+        finish();
+    }
+
+    /**
+     *
+     */
+    private void createNotification(){
+        Intent alarmIntent = new Intent(this, NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        TimePicker timePicker = (TimePicker)findViewById(R.id.notificationTimePicker);
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set (Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
+        calendar.set (Calendar.MINUTE, timePicker.getCurrentMinute());
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 }

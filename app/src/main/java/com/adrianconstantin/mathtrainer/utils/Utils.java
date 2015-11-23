@@ -61,6 +61,16 @@ public class Utils {
 
     /**
      *
+     */
+    public static final String NOTIFICATION_TITLE_TEXT = "Time for some math!";
+
+    /**
+     *
+     */
+    public static final String NOTIFICATION_CONTENT_TEXT = "Click to open Math Trainer";
+
+    /**
+     *
      * @param length
      * @return
      */

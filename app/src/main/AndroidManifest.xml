@@ -52,6 +52,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MainMathTrainer" />
         </activity>
+
+        <receiver
+            android:name=".notification.NotificationReceiver"
+            android:process=":remote" />
     </application>
 
 </manifest>
