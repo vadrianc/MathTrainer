@@ -152,8 +152,9 @@ public class OptionsActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
 
-        calendar.set (Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
-        calendar.set (Calendar.MINUTE, timePicker.getCurrentMinute());
+        calendar.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
+        calendar.set(Calendar.MINUTE, timePicker.getCurrentMinute());
+        calendar.set(Calendar.SECOND, 0);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
