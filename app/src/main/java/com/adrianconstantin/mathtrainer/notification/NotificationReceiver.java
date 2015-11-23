@@ -6,6 +6,8 @@ import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v7.app.NotificationCompat;
 
 import com.adrianconstantin.mathtrainer.R;
@@ -16,12 +18,14 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(context)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle(Utils.NOTIFICATION_TITLE_TEXT)
                         .setContentText(Utils.NOTIFICATION_CONTENT_TEXT)
+                        .setSound(alarmSound)
                         .setAutoCancel(true);
         Intent resultIntent = new Intent(context, MainMathTrainer.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
