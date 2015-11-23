@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorToolbarBackground">#58ACFA</color>
     <color name="colorTextTitle">#FFFFFF</color>
+    <color name="colorOptionTitle">#000000</color>
 </resources>

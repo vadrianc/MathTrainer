@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
+import android.widget.TimePicker;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.setting.OperandType;
@@ -105,6 +107,18 @@ public class OptionsActivity extends AppCompatActivity {
             case R.id.radio_integer:
                 OperationSettings.Instance().SetOperandType(OperandType.INTEGER);
                 break;
+        }
+    }
+
+    /**
+     *
+     * @param view
+     */
+    public void onNotificationClicked(View view) {
+        if (view.getId() == R.id.notificationCheckBox) {
+            TimePicker timePicker = (TimePicker)findViewById(R.id.notificationTimePicker);
+            CheckBox notificationCheckBox = (CheckBox)findViewById(R.id.notificationCheckBox);
+            timePicker.setEnabled(notificationCheckBox.isChecked());
         }
     }
 }

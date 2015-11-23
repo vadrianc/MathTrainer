@@ -21,8 +21,9 @@
     <string name="difficulty_easy">Easy</string>
     <string name="difficulty_normal">Normal</string>
     <string name="difficulty_hard">Hard</string>
-    <string name="difficulty_option">Difficulty:</string>
-    <string name="operand_type_option">Operand Type:</string>
+    <string name="difficulty_option">Difficulty</string>
+    <string name="operand_type_option">Operand Type</string>
     <string name="operand_type_natural">Natural</string>
     <string name="operand_type_integer">Integer</string>
+    <string name="notification_text">Notification</string>
 </resources>

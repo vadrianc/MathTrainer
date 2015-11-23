@@ -82,4 +82,20 @@
 
     </RadioGroup>
 
+
+    <CheckBox
+        android:id="@+id/notificationCheckBox"
+        android:theme="@style/optionTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_text"
+        android:checked="true"
+        android:onClick="onNotificationClicked"/>
+
+    <TimePicker
+        android:id="@+id/notificationTimePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fadeScrollbars="false"/>
+
 </LinearLayout>
