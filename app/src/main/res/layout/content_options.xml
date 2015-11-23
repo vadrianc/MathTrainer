@@ -12,90 +12,103 @@
         android:background="@color/colorToolbarBackground"
         app:titleTextAppearance="@style/toolbarTextStyle"/>
 
-    <TextView
-        android:id="@+id/difficultyOptionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:theme="@style/optionTextViewStyle"
-        android:text="@string/difficulty_option"/>
+    <ScrollView android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:fadeScrollbars="false">
+        
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginRight="@dimen/button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:layout_marginLeft="@dimen/button_margin">
+            <TextView
+                android:id="@+id/difficultyOptionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/optionTextViewStyle"
+                android:text="@string/difficulty_option"/>
 
-        <RadioButton android:id="@+id/radio_easy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/option_text_size"
-            android:text="@string/difficulty_easy"
-            android:onClick="onRadioButtonClicked"/>
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginBottom="@dimen/button_margin"
+                android:layout_marginLeft="@dimen/button_margin">
 
-        <RadioButton android:id="@+id/radio_normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/option_text_size"
-            android:text="@string/difficulty_normal"
-            android:onClick="onRadioButtonClicked"/>
+                <RadioButton android:id="@+id/radio_easy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/option_text_size"
+                    android:text="@string/difficulty_easy"
+                    android:onClick="onRadioButtonClicked"/>
 
-        <RadioButton android:id="@+id/radio_hard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/option_text_size"
-            android:text="@string/difficulty_hard"
-            android:onClick="onRadioButtonClicked"/>
+                <RadioButton android:id="@+id/radio_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/option_text_size"
+                    android:text="@string/difficulty_normal"
+                    android:onClick="onRadioButtonClicked"/>
 
-    </RadioGroup>
+                <RadioButton android:id="@+id/radio_hard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/option_text_size"
+                    android:text="@string/difficulty_hard"
+                    android:onClick="onRadioButtonClicked"/>
 
-
-    <TextView
-        android:id="@+id/operandTypeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:theme="@style/optionTextViewStyle"
-        android:text="@string/operand_type_option"/>
-
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginRight="@dimen/button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:layout_marginLeft="@dimen/button_margin">
-
-        <RadioButton android:id="@+id/radio_natural"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/option_text_size"
-            android:text="@string/operand_type_natural"
-            android:onClick="onRadioButtonClicked"/>
-
-        <RadioButton android:id="@+id/radio_integer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/option_text_size"
-            android:text="@string/operand_type_integer"
-            android:onClick="onRadioButtonClicked"/>
-
-    </RadioGroup>
+            </RadioGroup>
 
 
-    <CheckBox
-        android:id="@+id/notificationCheckBox"
-        android:theme="@style/optionTextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/notification_text"
-        android:checked="true"
-        android:onClick="onNotificationClicked"/>
+            <TextView
+                android:id="@+id/operandTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/optionTextViewStyle"
+                android:text="@string/operand_type_option"/>
 
-    <TimePicker
-        android:id="@+id/notificationTimePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fadeScrollbars="false"/>
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginBottom="@dimen/button_margin"
+                android:layout_marginLeft="@dimen/button_margin">
+
+                <RadioButton android:id="@+id/radio_natural"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/option_text_size"
+                    android:text="@string/operand_type_natural"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton android:id="@+id/radio_integer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/option_text_size"
+                    android:text="@string/operand_type_integer"
+                    android:onClick="onRadioButtonClicked"/>
+
+            </RadioGroup>
+
+
+            <CheckBox
+                android:id="@+id/notificationCheckBox"
+                android:theme="@style/optionTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notification_text"
+                android:checked="true"
+                android:onClick="onNotificationClicked"/>
+
+            <TimePicker
+                android:id="@+id/notificationTimePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fadeScrollbars="false"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
