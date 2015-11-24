@@ -1,9 +1,23 @@
 package com.adrianconstantin.mathtrainer.setting;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 /**
  * Created by AdrianConstantin on 11/7/2015.
  */
 public class OperationSettings {
+
+    private final String OPTIONS = "Options";
+    private final String DIFFICULTY = "Difficulty";
+    private final String MAXIMUM_DIGITS = "Maximum digits";
+    private final String OPERAND_TYPE = "Operand Type";
+    private final String IS_NOTIFICATION_ENABLED = "Notification Enabled";
+    private final String HOUR = "Hour";
+    private final String MINUTE = "Minute";
+    private final String IS_AM = "Am";
+
+
     /**
      * Singleton instance.
      */
@@ -38,12 +52,36 @@ public class OperationSettings {
     private OperationDifficulty mOperationDifficulty;
 
     /**
+     *
+     */
+    private boolean mIsNotificationEnabled;
+
+    /**
+     *
+     */
+    private int mHour;
+
+    /**
+     *
+     */
+    private int mMinute;
+
+    /**
+     *
+     */
+    private boolean mIsAm;
+
+    /**
      * OperationSettings default constructor.
      */
     public OperationSettings() {
         mOperandType = OperandType.NATURAL;
         mOperationDifficulty = OperationDifficulty.NORMAL;
         mMaximumDigits = 2;
+        mIsNotificationEnabled = true;
+        mHour = 6;
+        mMinute = 0;
+        mIsAm = false;
     }
 
     /**
@@ -89,5 +127,106 @@ public class OperationSettings {
      */
     public int GetMaximumDigits(){
         return mMaximumDigits;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean GetIsNotificationEnabled() {
+        return mIsNotificationEnabled;
+    }
+
+    /**
+     *
+     * @param mIsNotificationEnabled
+     */
+    public void SetIsNotificationEnabled(boolean mIsNotificationEnabled) {
+        this.mIsNotificationEnabled = mIsNotificationEnabled;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int GetHour() {
+        return mHour;
+    }
+
+    /**
+     *
+     * @param hour
+     */
+    public void SetHour(int hour) {
+        this.mHour = hour;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int GetMinute() {
+        return mMinute;
+    }
+
+    /**
+     *
+     * @param minute
+     */
+    public void SetMinute(int minute) {
+        this.mMinute = minute;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean GetIsAm() {
+        return mIsAm;
+    }
+
+    /**
+     *
+     * @param isAm
+     */
+    public void SetIsAm(boolean isAm) {
+        this.mIsAm = isAm;
+    }
+
+    /**
+     *
+     */
+    public void SaveOptions(Context context){
+        SharedPreferences preferences = context.getSharedPreferences(OPTIONS, 0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(DIFFICULTY, mOperationDifficulty.GetValue());
+        editor.putInt(MAXIMUM_DIGITS, mMaximumDigits);
+        editor.putInt(OPERAND_TYPE, mOperandType.GetValue());
+        editor.putBoolean(IS_NOTIFICATION_ENABLED, mIsNotificationEnabled);
+        editor.putInt(HOUR, mHour);
+        editor.putInt(MINUTE, mMinute);
+        editor.putBoolean(IS_AM, mIsAm);
+
+        editor.commit();
+    }
+
+    /**
+     *
+     */
+    public void LoadOptions(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(OPTIONS, 0);
+
+        int difficultyValue = preferences.getInt(DIFFICULTY, OperationDifficulty.NORMAL.GetValue());
+        mOperationDifficulty = OperationDifficulty.ToOperationDifficulty(difficultyValue);
+
+        mMaximumDigits = preferences.getInt(MAXIMUM_DIGITS, 2);
+
+        int operandTypeValue = preferences.getInt(OPERAND_TYPE, OperandType.NATURAL.GetValue());
+        mOperandType = OperandType.ToOperandType(operandTypeValue);
+
+        mIsNotificationEnabled = preferences.getBoolean(IS_NOTIFICATION_ENABLED, true);
+        mHour = preferences.getInt(HOUR, 6);
+        mMinute = preferences.getInt(MINUTE, 0);
+        mIsAm = preferences.getBoolean(IS_AM, false);
     }
 }

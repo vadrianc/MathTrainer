@@ -28,9 +28,13 @@ public class OptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
+        OperationSettings.Instance().LoadOptions(getApplicationContext());
+
         initToolbar();
         initDifficultyButton();
         initOperandTypeButton();
+        initNotificationCheckBox();
+        initTimePicker();
     }
 
     /**
@@ -48,8 +52,7 @@ public class OptionsActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createNotification();
-                finish();
+                handleExit();
             }
         });
     }
@@ -95,6 +98,35 @@ public class OptionsActivity extends AppCompatActivity {
 
     /**
      *
+     */
+    private void initNotificationCheckBox(){
+        TimePicker timePicker = (TimePicker)findViewById(R.id.notificationTimePicker);
+        CheckBox notificationCheckBox = (CheckBox)findViewById(R.id.notificationCheckBox);
+        notificationCheckBox.setChecked(OperationSettings.Instance().GetIsNotificationEnabled());
+        timePicker.setEnabled(notificationCheckBox.isChecked());
+    }
+
+    /**
+     *
+     */
+    private void initTimePicker(){
+        TimePicker timePicker = (TimePicker)findViewById(R.id.notificationTimePicker);
+
+        timePicker.setIs24HourView(false);
+        timePicker.setCurrentHour(OperationSettings.Instance().GetHour());
+        timePicker.setCurrentMinute(OperationSettings.Instance().GetMinute());
+
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                OperationSettings.Instance().SetHour(hourOfDay);
+                OperationSettings.Instance().SetMinute(minute);
+            }
+        });
+    }
+
+    /**
+     *
      * @param view
      */
     public void onRadioButtonClicked(View view) {
@@ -132,12 +164,21 @@ public class OptionsActivity extends AppCompatActivity {
             TimePicker timePicker = (TimePicker)findViewById(R.id.notificationTimePicker);
             CheckBox notificationCheckBox = (CheckBox)findViewById(R.id.notificationCheckBox);
             timePicker.setEnabled(notificationCheckBox.isChecked());
+            OperationSettings.Instance().SetIsNotificationEnabled(notificationCheckBox.isChecked());
         }
     }
 
     @Override
     public void onBackPressed() {
+        handleExit();
+    }
+
+    /**
+     *
+     */
+    private void handleExit() {
         createNotification();
+        OperationSettings.Instance().SaveOptions(this.getApplicationContext());
         finish();
     }
 
@@ -145,17 +186,20 @@ public class OptionsActivity extends AppCompatActivity {
      *
      */
     private void createNotification(){
+        if (!OperationSettings.Instance().GetIsNotificationEnabled()) return;
+
         Intent alarmIntent = new Intent(this, NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        TimePicker timePicker = (TimePicker)findViewById(R.id.notificationTimePicker);
 
         Calendar calendar = Calendar.getInstance();
 
-        calendar.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
-        calendar.set(Calendar.MINUTE, timePicker.getCurrentMinute());
+        calendar.set(Calendar.HOUR_OF_DAY, OperationSettings.Instance().GetHour());
+        calendar.set(Calendar.MINUTE, OperationSettings.Instance().GetMinute());
         calendar.set(Calendar.SECOND, 0);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
+
+
 }
