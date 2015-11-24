@@ -7,15 +7,42 @@ public enum OperandType {
     /**
      * Natural number type.
      */
-    NATURAL,
+    NATURAL(1),
 
     /**
      * Integer number type.
      */
-    INTEGER,
+    INTEGER(2),
 
     /**
      * Real number type.
      */
-    REAL
+    REAL(3);
+
+    public static OperandType ToOperandType(int value)
+    {
+        switch (value) {
+            case 1: return NATURAL;
+            case 2: return INTEGER;
+            case 3: return REAL;
+            default: throw new UnsupportedOperationException();
+        }
+    }
+
+    /**
+     *
+     */
+    private int mValue;
+
+    /**
+     *
+     * @param value
+     */
+    private OperandType(int value) {
+        mValue = value;
+    }
+
+    public int GetValue(){
+        return mValue;
+    }
 }
