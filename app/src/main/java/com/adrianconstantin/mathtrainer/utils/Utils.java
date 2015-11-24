@@ -62,12 +62,12 @@ public class Utils {
     /**
      *
      */
-    public static final String NOTIFICATION_TITLE_TEXT = "Time for some math!";
+    public static final String NOTIFICATION_TITLE_TEXT = "Enhance your math skills";
 
     /**
      *
      */
-    public static final String NOTIFICATION_CONTENT_TEXT = "Click to open Math Trainer";
+    public static final String NOTIFICATION_CONTENT_TEXT = "Open Math Trainer";
 
     /**
      *
