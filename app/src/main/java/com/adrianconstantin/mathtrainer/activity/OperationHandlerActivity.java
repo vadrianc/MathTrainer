@@ -1,5 +1,6 @@
 package com.adrianconstantin.mathtrainer.activity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -14,6 +15,7 @@ import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -99,10 +101,6 @@ public class OperationHandlerActivity extends AppCompatActivity {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params.width = (int) getResources().getDimension(R.dimen.help_me_btn_width);
-        params.height = (int) getResources().getDimension(R.dimen.help_me_btn_height);
-        int margin = (int) getResources().getDimension(R.dimen.control_margin);
-        params.setMargins(margin, margin, margin, margin);
         mHelpMeButton.setImageResource(R.mipmap.ic_help_me);
         params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         params.addRule(RelativeLayout.CENTER_VERTICAL);
@@ -234,11 +232,6 @@ public class OperationHandlerActivity extends AppCompatActivity {
         if(mWrongAnswerCount == 5) {
             RelativeLayout layout = (RelativeLayout) findViewById(R.id.editLayout);
             layout.addView(mHelpMeButton);
-
-            EditText editor = (EditText)findViewById(R.id.resultEditText);
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)editor.getLayoutParams();
-            int margin = (int) getResources().getDimension(R.dimen.control_margin);
-            params.setMargins(margin, margin, 0, margin);
         }
     }
 
