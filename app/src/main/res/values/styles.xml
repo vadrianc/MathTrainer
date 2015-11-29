@@ -41,4 +41,8 @@
         <item name="android:textSize">@dimen/title_text_size</item>
         <item name="android:textColor">@color/colorTextTitle</item>
     </style>
+
+    <style name="timePickerStyle" >
+        <item name="android:colorAccent">@color/apptheme_color</item>
+    </style>
 </resources>
