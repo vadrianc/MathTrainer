@@ -36,6 +36,16 @@
         <item name="android:textColor">@color/colorOptionTitle</item>
     </style>
 
+    <!-- Option text view style -->
+    <style name="timeOptionTextViewStyle">
+        <item name="android:padding">@dimen/operation_text_padding</item>
+        <item name="android:layout_marginRight">@dimen/button_margin</item>
+        <item name="android:layout_marginTop">@dimen/button_margin</item>
+        <item name="android:layout_marginLeft">@dimen/button_margin</item>
+        <item name="android:textSize">@dimen/option_title_text_size</item>
+        <item name="android:textColor">@color/colorOptionTitle</item>
+    </style>
+
     <!-- Toolbar title -->
     <style name="toolbarTextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">@dimen/title_text_size</item>

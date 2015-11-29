@@ -2,7 +2,9 @@ package com.adrianconstantin.mathtrainer.activity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -10,7 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.adrianconstantin.mathtrainer.R;
@@ -23,6 +27,11 @@ import java.util.Calendar;
 
 public class OptionsActivity extends AppCompatActivity {
 
+    /**
+     *
+     */
+    private TimePickerDialog mTimePicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +43,7 @@ public class OptionsActivity extends AppCompatActivity {
         initDifficultyButton();
         initOperandTypeButton();
         initNotificationCheckBox();
-        initTimePicker();
+        initTextViewTime();
     }
 
     /**
@@ -100,29 +109,45 @@ public class OptionsActivity extends AppCompatActivity {
      *
      */
     private void initNotificationCheckBox(){
-        TimePicker timePicker = (TimePicker)findViewById(R.id.notificationTimePicker);
+        TextView timeTextView = (TextView)findViewById(R.id.textViewTime);
+        ImageButton timeImageButton = (ImageButton) findViewById(R.id.imageEditTime);
         CheckBox notificationCheckBox = (CheckBox)findViewById(R.id.notificationCheckBox);
         notificationCheckBox.setChecked(OperationSettings.Instance().GetIsNotificationEnabled());
-        timePicker.setEnabled(notificationCheckBox.isChecked());
+        timeTextView.setEnabled(notificationCheckBox.isChecked());
+        timeImageButton.setEnabled(notificationCheckBox.isChecked());
+
+        updateTimeTextColor();
     }
 
     /**
      *
      */
-    private void initTimePicker(){
-        TimePicker timePicker = (TimePicker)findViewById(R.id.notificationTimePicker);
-
-        timePicker.setIs24HourView(false);
-        timePicker.setCurrentHour(OperationSettings.Instance().GetHour());
-        timePicker.setCurrentMinute(OperationSettings.Instance().GetMinute());
-
-        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+    private void initTextViewTime(){
+        int mHour = OperationSettings.Instance().GetHour();
+        int mMinute = OperationSettings.Instance().GetMinute();
+        mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 OperationSettings.Instance().SetHour(hourOfDay);
                 OperationSettings.Instance().SetMinute(minute);
+
+                TextView timeTextView = (TextView) findViewById(R.id.textViewTime);
+                timeTextView.setText(OperationSettings.Instance().GetTime());
             }
-        });
+        }, mHour, mMinute, true);
+
+        mTimePicker.setTitle("Select Time");
+
+        TextView timeTextView = (TextView) findViewById(R.id.textViewTime);
+        timeTextView.setText(OperationSettings.Instance().GetTime());
+    }
+
+    /**
+     *
+     * @param view
+     */
+    public void onTextViewTimeClicked(View view){
+        mTimePicker.show();
     }
 
     /**
@@ -161,10 +186,28 @@ public class OptionsActivity extends AppCompatActivity {
      */
     public void onNotificationClicked(View view) {
         if (view.getId() == R.id.notificationCheckBox) {
-            TimePicker timePicker = (TimePicker)findViewById(R.id.notificationTimePicker);
+            TextView timeTextView = (TextView)findViewById(R.id.textViewTime);
+            ImageButton timeImageButton = (ImageButton) findViewById(R.id.imageEditTime);
             CheckBox notificationCheckBox = (CheckBox)findViewById(R.id.notificationCheckBox);
-            timePicker.setEnabled(notificationCheckBox.isChecked());
+            timeTextView.setEnabled(notificationCheckBox.isChecked());
+            timeImageButton.setEnabled(notificationCheckBox.isChecked());
             OperationSettings.Instance().SetIsNotificationEnabled(notificationCheckBox.isChecked());
+
+            updateTimeTextColor();
+        }
+    }
+
+    /**
+     *
+     */
+    private void updateTimeTextColor() {
+        TextView timeTextView = (TextView)findViewById(R.id.textViewTime);
+        CheckBox notificationCheckBox = (CheckBox)findViewById(R.id.notificationCheckBox);
+
+        if (notificationCheckBox.isChecked()) {
+            timeTextView.setTextColor(Color.parseColor("#000000"));
+        } else {
+            timeTextView.setTextColor(Color.parseColor("#BDBDBD"));
         }
     }
 

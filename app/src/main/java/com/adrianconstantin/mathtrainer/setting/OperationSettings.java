@@ -195,6 +195,18 @@ public class OperationSettings {
 
     /**
      *
+     * @return
+     */
+    public String GetTime(){
+        if (mHour <= 9 && mMinute <= 9) return String.format("0%d : 0%d", mHour, mMinute);
+        if (mMinute <= 9) return String.format("%d : 0%d", mHour, mMinute);
+        if (mHour <= 9) return String.format("0%d : %d", mHour, mMinute);
+
+        return String.format("%d : %d", mHour, mMinute);
+    }
+
+    /**
+     *
      */
     public void SaveOptions(Context context){
         SharedPreferences preferences = context.getSharedPreferences(OPTIONS, 0);
