@@ -22,8 +22,8 @@
     <string name="difficulty_normal">Normal</string>
     <string name="difficulty_hard">Hard</string>
     <string name="difficulty_option">Difficulty</string>
-    <string name="operand_type_option">Operand Type</string>
+    <string name="operand_type_option">Operand type</string>
     <string name="operand_type_natural">Natural</string>
     <string name="operand_type_integer">Integer</string>
-    <string name="notification_text">Notification</string>
+    <string name="notification_text">Notify me every day at</string>
 </resources>
