@@ -53,9 +53,18 @@
                 android:value=".activity.MainMathTrainer" />
         </activity>
 
+        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
         <receiver
             android:name=".notification.NotificationReceiver"
-            android:process=":remote" />
+            android:enabled="true"
+            android:exported="true"
+            android:label="StartMyServiceAtBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

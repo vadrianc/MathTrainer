@@ -3,6 +3,7 @@ package com.adrianconstantin.mathtrainer.activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -194,6 +195,12 @@ public class OptionsActivity extends AppCompatActivity {
             OperationSettings.Instance().SetIsNotificationEnabled(notificationCheckBox.isChecked());
 
             updateTimeTextColor();
+
+            if (!notificationCheckBox.isChecked()) {
+                cancelAlarm(getApplicationContext());
+            } else {
+                createNotification();
+            }
         }
     }
 
@@ -231,6 +238,8 @@ public class OptionsActivity extends AppCompatActivity {
     private void createNotification(){
         if (!OperationSettings.Instance().GetIsNotificationEnabled()) return;
 
+        cancelAlarm(getApplicationContext());
+
         Intent alarmIntent = new Intent(this, NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -241,7 +250,25 @@ public class OptionsActivity extends AppCompatActivity {
         calendar.set(Calendar.MINUTE, OperationSettings.Instance().GetMinute());
         calendar.set(Calendar.SECOND, 0);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        //int oneDayMillis = 24 * 60 * 60 * 1000;
+        int oneDayMillis = 10 * 1000;
+        if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
+            calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
+        }
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), oneDayMillis, pendingIntent);
+    }
+
+    /**
+     *
+     * @param context
+     */
+    private void cancelAlarm(Context context)
+    {
+        Intent intent = new Intent(context, NotificationReceiver.class);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(sender);
     }
 
 
