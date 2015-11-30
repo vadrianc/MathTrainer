@@ -52,7 +52,8 @@
         <item name="android:textColor">@color/colorTextTitle</item>
     </style>
 
-    <style name="timePickerStyle" >
-        <item name="android:colorAccent">@color/apptheme_color</item>
+    <!-- Theme.AppCompat.Light is not a dialog theme -->
+    <style name="TimePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorToolbarBackground</item>
     </style>
 </resources>

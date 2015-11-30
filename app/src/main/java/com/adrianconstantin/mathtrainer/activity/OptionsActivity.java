@@ -125,7 +125,7 @@ public class OptionsActivity extends AppCompatActivity {
     private void initTextViewTime(){
         int mHour = OperationSettings.Instance().GetHour();
         int mMinute = OperationSettings.Instance().GetMinute();
-        mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(this, R.style.TimePickerDialogTheme, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 OperationSettings.Instance().SetHour(hourOfDay);
