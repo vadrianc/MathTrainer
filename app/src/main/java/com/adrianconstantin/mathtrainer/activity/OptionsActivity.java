@@ -250,8 +250,7 @@ public class OptionsActivity extends AppCompatActivity {
         calendar.set(Calendar.MINUTE, OperationSettings.Instance().GetMinute());
         calendar.set(Calendar.SECOND, 0);
 
-        //int oneDayMillis = 24 * 60 * 60 * 1000;
-        int oneDayMillis = 10 * 1000;
+        int oneDayMillis = 24 * 60 * 60 * 1000;
         if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
             calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
         }
