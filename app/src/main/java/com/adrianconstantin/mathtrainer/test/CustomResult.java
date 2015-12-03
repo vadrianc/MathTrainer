@@ -117,8 +117,6 @@ public class CustomResult implements ITestResult, Parcelable {
 
         if (mIncorrectAnswerList.size() == 0) {
             msgBuilder.append("Congratulations! All your answers are correct.");
-            msgBuilder.append("\n");
-            msgBuilder.append("Consider taking the test multiple times to improve your skills.");
         } else {
             int total = mCorrectAnswerList.size() + mIncorrectAnswerList.size();
 
