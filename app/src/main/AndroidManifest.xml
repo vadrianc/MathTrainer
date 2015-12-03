@@ -3,6 +3,7 @@
     package="com.adrianconstantin.mathtrainer" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -10,6 +11,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+
+        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
         <activity
             android:name=".activity.MainMathTrainer"
             android:label="@string/app_name"
@@ -53,17 +57,16 @@
                 android:value=".activity.MainMathTrainer" />
         </activity>
 
-        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-        <receiver
-            android:name=".notification.NotificationReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:label="StartMyServiceAtBootReceiver">
+        <!-- Notification service triggered after reboot  -->
+        <receiver android:name=".notification.NotificationBootReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".notification.NotificationServiceReceiver"/>
+        <receiver android:name=".notification.NotificationReceiver"/>
+        <service android:name=".notification.ScheduledNotificationService"/>
+        <service android:name=".notification.ScheduledAlarmService"/>
 
     </application>
 

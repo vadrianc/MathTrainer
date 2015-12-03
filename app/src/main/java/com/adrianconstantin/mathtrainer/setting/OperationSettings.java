@@ -2,6 +2,7 @@ package com.adrianconstantin.mathtrainer.setting;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 /**
  * Created by AdrianConstantin on 11/7/2015.
@@ -209,8 +210,9 @@ public class OperationSettings {
      *
      */
     public void SaveOptions(Context context){
-        SharedPreferences preferences = context.getSharedPreferences(OPTIONS, 0);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
+
         editor.putInt(DIFFICULTY, mOperationDifficulty.GetValue());
         editor.putInt(MAXIMUM_DIGITS, mMaximumDigits);
         editor.putInt(OPERAND_TYPE, mOperandType.GetValue());
@@ -226,7 +228,7 @@ public class OperationSettings {
      *
      */
     public void LoadOptions(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(OPTIONS, 0);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         int difficultyValue = preferences.getInt(DIFFICULTY, OperationDifficulty.NORMAL.GetValue());
         mOperationDifficulty = OperationDifficulty.ToOperationDifficulty(difficultyValue);

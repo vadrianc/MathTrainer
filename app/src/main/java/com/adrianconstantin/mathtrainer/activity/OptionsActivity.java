@@ -1,10 +1,6 @@
 package com.adrianconstantin.mathtrainer.activity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -20,11 +16,11 @@ import android.widget.TimePicker;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.notification.NotificationReceiver;
+import com.adrianconstantin.mathtrainer.notification.NotificationServiceReceiver;
+import com.adrianconstantin.mathtrainer.notification.ScheduledAlarmService;
 import com.adrianconstantin.mathtrainer.setting.OperandType;
 import com.adrianconstantin.mathtrainer.setting.OperationDifficulty;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
-
-import java.util.Calendar;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -197,9 +193,9 @@ public class OptionsActivity extends AppCompatActivity {
             updateTimeTextColor();
 
             if (!notificationCheckBox.isChecked()) {
-                cancelAlarm(getApplicationContext());
+                ScheduledAlarmService.CancelAlarm(getApplicationContext(), NotificationReceiver.class);
             } else {
-                createNotification();
+                ScheduledAlarmService.CreateAlarm(getApplicationContext(), NotificationReceiver.class);
             }
         }
     }
@@ -227,48 +223,8 @@ public class OptionsActivity extends AppCompatActivity {
      *
      */
     private void handleExit() {
-        createNotification();
-        OperationSettings.Instance().SaveOptions(this.getApplicationContext());
+        ScheduledAlarmService.CreateAlarm(getApplicationContext(), NotificationReceiver.class);
+        OperationSettings.Instance().SaveOptions(getApplicationContext());
         finish();
     }
-
-    /**
-     *
-     */
-    private void createNotification(){
-        if (!OperationSettings.Instance().GetIsNotificationEnabled()) return;
-
-        cancelAlarm(getApplicationContext());
-
-        Intent alarmIntent = new Intent(this, NotificationReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-        Calendar calendar = Calendar.getInstance();
-
-        calendar.set(Calendar.HOUR_OF_DAY, OperationSettings.Instance().GetHour());
-        calendar.set(Calendar.MINUTE, OperationSettings.Instance().GetMinute());
-        calendar.set(Calendar.SECOND, 0);
-
-        int oneDayMillis = 24 * 60 * 60 * 1000;
-        if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
-            calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
-        }
-
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), oneDayMillis, pendingIntent);
-    }
-
-    /**
-     *
-     * @param context
-     */
-    private void cancelAlarm(Context context)
-    {
-        Intent intent = new Intent(context, NotificationReceiver.class);
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(sender);
-    }
-
-
 }
