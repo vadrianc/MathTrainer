@@ -35,20 +35,6 @@
                 android:textSize="@dimen/result_text_size"
                 android:lines="17"/>
 
-            <Button
-                android:id="@+id/facebookBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/facebook_btn_padding"
-                android:text="Post on Facebook"
-                android:drawableLeft="@drawable/ic_facebook_icon"
-                android:textSize="@dimen/facebook_btn_text_size"
-                android:background="@layout/button_facebook"
-                android:gravity="center_horizontal"
-                android:layout_gravity="center_horizontal"
-                android:textAllCaps="false"
-                android:onClick="ButtonClickEvent"/>
-
         </LinearLayout>
 
     </ScrollView>

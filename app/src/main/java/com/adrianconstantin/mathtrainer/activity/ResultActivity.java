@@ -7,13 +7,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.view.View;
 import android.widget.TextView;
 
 import com.adrianconstantin.mathtrainer.R;
 import com.adrianconstantin.mathtrainer.test.CustomResult;
 import com.adrianconstantin.mathtrainer.utils.Utils;
-import com.facebook.FacebookSdk;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -21,8 +19,6 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
-        FacebookSdk.sdkInitialize(getApplicationContext());
 
         initToolbar();
         displayResult();
@@ -97,12 +93,5 @@ public class ResultActivity extends AppCompatActivity {
         }
 
         return count;
-    }
-
-    public void ButtonClickEvent(View view){
-        switch (view.getId()) {
-            case R.id.facebookBtn:
-
-        }
     }
 }
