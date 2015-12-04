@@ -25,4 +25,9 @@
     <string name="operand_type_natural">Natural</string>
     <string name="operand_type_integer">Integer</string>
     <string name="notification_text">Notify me every day at</string>
+
+    <!-- Add mob ids -->
+    <string name="main_activity_banner_id">ca-app-pub-5653420823590846/2091332617</string>
+    <string name="options_activity_banner_id">ca-app-pub-5653420823590846/8188238610</string>
+    <string name="result_activity_banner_id">ca-app-pub-5653420823590846/9246169415</string>
 </resources>

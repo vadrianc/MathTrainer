@@ -28,6 +28,8 @@ import com.adrianconstantin.mathtrainer.setting.OperandType;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 import com.adrianconstantin.mathtrainer.test.CustomTest;
 import com.adrianconstantin.mathtrainer.utils.Utils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,23 @@ public class MainMathTrainer extends AppCompatActivity {
         setContentView(R.layout.activity_main_math_trainer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
+        loadAdView();
     }
+
+    /**
+     *
+     */
+    private void loadAdView(){
+        if (!OperationSettings.Instance().DoAdRequest()) return;
+
+        AdView mAdView = (AdView) findViewById(R.id.mainActivityAdView);
+        AdRequest adRequest = new AdRequest.Builder()
+                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+
+        mAdView.loadAd(adRequest);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

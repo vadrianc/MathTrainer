@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
  */
 public class OperationSettings {
 
-    private final String OPTIONS = "Options";
     private final String DIFFICULTY = "Difficulty";
     private final String MAXIMUM_DIGITS = "Maximum digits";
     private final String OPERAND_TYPE = "Operand Type";
@@ -73,6 +72,11 @@ public class OperationSettings {
     private boolean mIsAm;
 
     /**
+     *
+     */
+    private boolean mDoAdRequest;
+
+    /**
      * OperationSettings default constructor.
      */
     public OperationSettings() {
@@ -83,6 +87,7 @@ public class OperationSettings {
         mHour = 6;
         mMinute = 0;
         mIsAm = false;
+        mDoAdRequest = false;
     }
 
     /**
@@ -192,6 +197,14 @@ public class OperationSettings {
      */
     public void SetIsAm(boolean isAm) {
         this.mIsAm = isAm;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean DoAdRequest() {
+        return mDoAdRequest;
     }
 
     /**

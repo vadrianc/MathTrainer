@@ -1,12 +1,15 @@
 package com.adrianconstantin.mathtrainer.activity;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -21,6 +24,8 @@ import com.adrianconstantin.mathtrainer.notification.ScheduledAlarmService;
 import com.adrianconstantin.mathtrainer.setting.OperandType;
 import com.adrianconstantin.mathtrainer.setting.OperationDifficulty;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -41,6 +46,20 @@ public class OptionsActivity extends AppCompatActivity {
         initOperandTypeButton();
         initNotificationCheckBox();
         initTextViewTime();
+        loadAdView();
+    }
+
+    /**
+     *
+     */
+    private void loadAdView(){
+        if (!OperationSettings.Instance().DoAdRequest()) return;
+
+        AdView mAdView = (AdView) findViewById(R.id.optionsActivityAdView);
+        AdRequest adRequest = new AdRequest.Builder()
+                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdView.loadAd(adRequest);
     }
 
     /**

@@ -10,8 +10,11 @@ import android.text.Html;
 import android.widget.TextView;
 
 import com.adrianconstantin.mathtrainer.R;
+import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 import com.adrianconstantin.mathtrainer.test.CustomResult;
 import com.adrianconstantin.mathtrainer.utils.Utils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -22,6 +25,20 @@ public class ResultActivity extends AppCompatActivity {
 
         initToolbar();
         displayResult();
+        loadAdView();
+    }
+
+    /**
+     *
+     */
+    private void loadAdView(){
+        if (!OperationSettings.Instance().DoAdRequest()) return;
+
+        AdView mAdView = (AdView) findViewById(R.id.resultActivityAdView);
+        AdRequest adRequest = new AdRequest.Builder()
+                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdView.loadAd(adRequest);
     }
 
     /**
