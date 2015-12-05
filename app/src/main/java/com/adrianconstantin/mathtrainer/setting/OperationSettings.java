@@ -15,8 +15,9 @@ public class OperationSettings {
     private final String IS_NOTIFICATION_ENABLED = "Notification Enabled";
     private final String HOUR = "Hour";
     private final String MINUTE = "Minute";
-    private final String IS_AM = "Am";
 
+    private final int DEFAULT_HOUR = 18;
+    private final int DEFAULT_MINUTE = 0;
 
     /**
      * Singleton instance.
@@ -69,11 +70,6 @@ public class OperationSettings {
     /**
      *
      */
-    private boolean mIsAm;
-
-    /**
-     *
-     */
     private boolean mDoAdRequest;
 
     /**
@@ -84,9 +80,8 @@ public class OperationSettings {
         mOperationDifficulty = OperationDifficulty.NORMAL;
         mMaximumDigits = 2;
         mIsNotificationEnabled = true;
-        mHour = 18;
-        mMinute = 0;
-        mIsAm = false;
+        mHour = DEFAULT_HOUR;
+        mMinute = DEFAULT_MINUTE;
         mDoAdRequest = false;
     }
 
@@ -187,22 +182,6 @@ public class OperationSettings {
      *
      * @return
      */
-    public boolean GetIsAm() {
-        return mIsAm;
-    }
-
-    /**
-     *
-     * @param isAm
-     */
-    public void SetIsAm(boolean isAm) {
-        this.mIsAm = isAm;
-    }
-
-    /**
-     *
-     * @return
-     */
     public boolean DoAdRequest() {
         return mDoAdRequest;
     }
@@ -232,7 +211,6 @@ public class OperationSettings {
         editor.putBoolean(IS_NOTIFICATION_ENABLED, mIsNotificationEnabled);
         editor.putInt(HOUR, mHour);
         editor.putInt(MINUTE, mMinute);
-        editor.putBoolean(IS_AM, mIsAm);
 
         editor.commit();
     }
@@ -252,8 +230,7 @@ public class OperationSettings {
         mOperandType = OperandType.ToOperandType(operandTypeValue);
 
         mIsNotificationEnabled = preferences.getBoolean(IS_NOTIFICATION_ENABLED, true);
-        mHour = preferences.getInt(HOUR, 6);
-        mMinute = preferences.getInt(MINUTE, 0);
-        mIsAm = preferences.getBoolean(IS_AM, false);
+        mHour = preferences.getInt(HOUR, DEFAULT_HOUR);
+        mMinute = preferences.getInt(MINUTE, DEFAULT_MINUTE);
     }
 }
