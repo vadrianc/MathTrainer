@@ -14,6 +14,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.text.method.KeyListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -194,6 +195,9 @@ public class OperationHandlerActivity extends AppCompatActivity {
         boolean valuesAreEqual = (Integer)mCurrentOperationHandler.ExecuteOperation() == userInput;
 
         if (valuesAreEqual) {
+            resultEditText.setTag(resultEditText.getKeyListener());
+            resultEditText.setKeyListener(null);
+
             if (mTest != null) {
                 mTest.GetResult().PutCorrectAnswer(mCurrentOperationHandler.GetExpression(), resultEditText.getText().toString());
             }
@@ -208,6 +212,9 @@ public class OperationHandlerActivity extends AppCompatActivity {
             displayConfirmationImage(R.mipmap.ic_thumb_down);
 
             if (mTest != null) {
+                resultEditText.setTag(resultEditText.getKeyListener());
+                resultEditText.setKeyListener(null);
+
                 mTest.GetResult().PutIncorrectAnswer(mCurrentOperationHandler.GetExpression(),
                         resultEditText.getText().toString(),
                         mCurrentOperationHandler.ExecuteOperation().toString());
@@ -279,6 +286,12 @@ public class OperationHandlerActivity extends AppCompatActivity {
                 mCurrentOperationHandler.GenerateOperands();
                 populateTextView();
                 final EditText resultEditText = (EditText) findViewById(R.id.resultEditText);
+
+                if (resultEditText.getTag() != null){
+                    resultEditText.setKeyListener((KeyListener) resultEditText.getTag());
+                    resultEditText.setTag(null);
+                }
+
                 resultEditText.getText().clear();
                 hideConfirmationImage();
                 updateTitleForTest();
