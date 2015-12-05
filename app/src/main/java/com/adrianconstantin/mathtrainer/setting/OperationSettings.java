@@ -84,7 +84,7 @@ public class OperationSettings {
         mOperationDifficulty = OperationDifficulty.NORMAL;
         mMaximumDigits = 2;
         mIsNotificationEnabled = true;
-        mHour = 6;
+        mHour = 18;
         mMinute = 0;
         mIsAm = false;
         mDoAdRequest = false;
