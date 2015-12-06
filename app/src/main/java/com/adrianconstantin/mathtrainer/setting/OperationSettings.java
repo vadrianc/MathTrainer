@@ -82,7 +82,7 @@ public class OperationSettings {
         mIsNotificationEnabled = true;
         mHour = DEFAULT_HOUR;
         mMinute = DEFAULT_MINUTE;
-        mDoAdRequest = true;
+        mDoAdRequest = false;
     }
 
     /**
