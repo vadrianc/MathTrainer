@@ -1,6 +1,7 @@
 package com.adrianconstantin.mathtrainer.activity;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -18,6 +19,7 @@ import android.text.method.KeyListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -195,8 +197,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
         boolean valuesAreEqual = (Integer)mCurrentOperationHandler.ExecuteOperation() == userInput;
 
         if (valuesAreEqual) {
-            resultEditText.setTag(resultEditText.getKeyListener());
-            resultEditText.setKeyListener(null);
+            disableSoftwareInput(resultEditText);
 
             if (mTest != null) {
                 mTest.GetResult().PutCorrectAnswer(mCurrentOperationHandler.GetExpression(), resultEditText.getText().toString());
@@ -212,8 +213,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
             displayConfirmationImage(R.mipmap.ic_thumb_down);
 
             if (mTest != null) {
-                resultEditText.setTag(resultEditText.getKeyListener());
-                resultEditText.setKeyListener(null);
+                disableSoftwareInput(resultEditText);
 
                 mTest.GetResult().PutIncorrectAnswer(mCurrentOperationHandler.GetExpression(),
                         resultEditText.getText().toString(),
@@ -261,6 +261,7 @@ public class OperationHandlerActivity extends AppCompatActivity {
      */
     private void handleNextOperation(){
         Handler handler = new Handler();
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -287,9 +288,8 @@ public class OperationHandlerActivity extends AppCompatActivity {
                 populateTextView();
                 final EditText resultEditText = (EditText) findViewById(R.id.resultEditText);
 
-                if (resultEditText.getTag() != null){
-                    resultEditText.setKeyListener((KeyListener) resultEditText.getTag());
-                    resultEditText.setTag(null);
+                if (resultEditText.getTag() != null) {
+                    enableSoftwareInput(resultEditText);
                 }
 
                 resultEditText.getText().clear();
@@ -298,6 +298,29 @@ public class OperationHandlerActivity extends AppCompatActivity {
                 mBlockResultHandler = false;
             }
         }, 3000);
+    }
+
+    /**
+     *
+     * @param resultEditText
+     */
+    private void disableSoftwareInput(EditText resultEditText){
+        resultEditText.setTag(resultEditText.getKeyListener());
+        resultEditText.setKeyListener(null);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(resultEditText.getWindowToken(), 0);
+    }
+
+    /**
+     *
+     * @param resultEditText
+     */
+    private void enableSoftwareInput(EditText resultEditText) {
+        resultEditText.setKeyListener((KeyListener) resultEditText.getTag());
+        resultEditText.setTag(null);
+        resultEditText.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(resultEditText, 0);
     }
 
     /**
