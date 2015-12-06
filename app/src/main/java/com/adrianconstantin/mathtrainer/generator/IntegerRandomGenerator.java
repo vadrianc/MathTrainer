@@ -17,15 +17,13 @@ public class IntegerRandomGenerator extends RandomGeneratorBase<Integer> {
     }
 
     /**
-     * IntegerRandomGenerator constructor.
      *
-     * @param seed  the initial value of the internal state of the pseudorandom integer generator
-     *              which is maintained by method next(int).
-     * @param maximum limit for the generated number.
+     * @param minimum
+     * @param maximum
      */
-    public IntegerRandomGenerator(long seed, int maximum)
+    public IntegerRandomGenerator(int minimum, int maximum)
     {
-        super(seed, maximum);
+        super(minimum, maximum);
     }
 
     /**
@@ -33,6 +31,10 @@ public class IntegerRandomGenerator extends RandomGeneratorBase<Integer> {
      */
     @Override
     protected Integer GenerateNumber() {
+        if (mMinimum != NO_MIN_VALUE) {
+            return mRandom.nextInt(mMaximum - mMinimum) + mMinimum;
+        }
+
         return mRandom.nextInt(mMaximum);
     }
 }

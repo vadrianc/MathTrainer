@@ -17,17 +17,6 @@ public class DoubleRandomGenerator extends RandomGeneratorBase<Double> {
     }
 
     /**
-     * DoubleRandomGenerator constructor.
-     *
-     * @param seed    the initial value of the internal state of the pseudorandom double generator
-     *                which is maintained by method next(int).
-     * @param maximum limit for the generated double.
-     */
-    public DoubleRandomGenerator(long seed, int maximum) {
-        super(seed, maximum);
-    }
-
-    /**
      * @return
      */
     @Override

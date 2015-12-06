@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.adrianconstantin.mathtrainer.base.DivisionHandlerBase;
 import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
+import com.adrianconstantin.mathtrainer.setting.OperationDifficulty;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
@@ -81,6 +82,10 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
      */
     @Override
     protected void CreateRandomOperands() {
+        if (OperationSettings.Instance().GetOperationDifficulty() == OperationDifficulty.HARD){
+            mRandomGenerator = new IntegerRandomGenerator(100, Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits()));
+        }
+
         mFirstOperand = mRandomGenerator.Generate();
         int tempMax = mRandomGenerator.GetMaximum();
 
@@ -91,10 +96,14 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
             return;
         }
 
+        if (OperationSettings.Instance().GetOperationDifficulty() == OperationDifficulty.HARD){
+            mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits()));
+        }
+
         mRandomGenerator.SetMaximum(mFirstOperand / 2);
 
         int tryRounds = 0;
-        int maxTryRounds = 200;
+        int maxTryRounds = 300;
 
         do {
             mSecondOperand = mRandomGenerator.Generate();
@@ -103,7 +112,7 @@ public class NaturalDivisionHandler extends DivisionHandlerBase<Integer, Integer
             if (tryRounds >= maxTryRounds) {
 
                 if (mSecondOperand == 0 || mFirstOperand % mSecondOperand != 0){
-                    mSecondOperand = 1;
+                    mSecondOperand = mFirstOperand;
                 }
 
                 break;

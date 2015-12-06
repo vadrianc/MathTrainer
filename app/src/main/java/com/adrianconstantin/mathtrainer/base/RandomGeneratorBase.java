@@ -7,6 +7,8 @@ import java.util.concurrent.ArrayBlockingQueue;
  * Created by AdrianConstantin on 11/1/2015.
  */
 public abstract class RandomGeneratorBase<T extends Number> implements IRandomGenerator<T> {
+    public final int NO_MIN_VALUE = -1;
+
     protected final int MAX_HISTORY_CAPACITY = 7;
 
     /**
@@ -25,6 +27,11 @@ public abstract class RandomGeneratorBase<T extends Number> implements IRandomGe
     protected int mMaximum = 0;
 
     /**
+     * The maximum limit for the generated number.
+     */
+    protected int mMinimum = NO_MIN_VALUE;
+
+    /**
      * RandomGeneratorBase constructor.
      *
      * @param maximum limit for the generated number.
@@ -37,15 +44,14 @@ public abstract class RandomGeneratorBase<T extends Number> implements IRandomGe
     }
 
     /**
-     * RandomGeneratorBase constructor.
      *
-     * @param seed  the initial value of the internal state of the pseudorandom number generator
-     *              which is maintained by method next(int).
-     * @param maximum limit for the generated number.
+     * @param minimum
+     * @param maximum
      */
-    public RandomGeneratorBase(long seed, int maximum)
+    public RandomGeneratorBase(int minimum, int maximum)
     {
-        mRandom = new Random(seed);
+        mRandom = new Random();
+        mMinimum = minimum;
         mMaximum = maximum;
         mHistory = new ArrayBlockingQueue<T>(MAX_HISTORY_CAPACITY);
     }
