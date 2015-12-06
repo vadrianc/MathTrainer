@@ -40,6 +40,9 @@ public class MainMathTrainer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_math_trainer);
+
+        OperationSettings.Instance().LoadOptions(getApplicationContext());
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
         loadAdView();

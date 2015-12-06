@@ -39,8 +39,6 @@ public class OptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
-        OperationSettings.Instance().LoadOptions(getApplicationContext());
-
         initToolbar();
         initDifficultyButton();
         initOperandTypeButton();
