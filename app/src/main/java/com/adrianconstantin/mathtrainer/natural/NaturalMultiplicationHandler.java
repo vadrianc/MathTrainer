@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.adrianconstantin.mathtrainer.base.MultiplicationHandlerBase;
 import com.adrianconstantin.mathtrainer.generator.IntegerRandomGenerator;
+import com.adrianconstantin.mathtrainer.setting.OperationDifficulty;
 import com.adrianconstantin.mathtrainer.setting.OperationSettings;
 import com.adrianconstantin.mathtrainer.utils.Utils;
 
@@ -82,7 +83,15 @@ public class NaturalMultiplicationHandler extends MultiplicationHandlerBase<Inte
     @Override
     protected void CreateRandomOperands() {
         mFirstOperand = mRandomGenerator.Generate();
+
+        if (OperationSettings.Instance().GetOperationDifficulty() == OperationDifficulty.HARD) {
+            mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits() - 1));
+        }
         mSecondOperand = mRandomGenerator.Generate();
+
+        if (OperationSettings.Instance().GetOperationDifficulty() == OperationDifficulty.HARD) {
+            mRandomGenerator = new IntegerRandomGenerator(Utils.GetMaximumInteger(OperationSettings.Instance().GetMaximumDigits()));
+        }
     }
 
     /**
