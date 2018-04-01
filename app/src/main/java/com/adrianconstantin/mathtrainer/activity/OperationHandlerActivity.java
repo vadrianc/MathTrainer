@@ -189,7 +189,12 @@ public class OperationHandlerActivity extends AppCompatActivity {
         int resultLength = mCurrentOperationHandler.ExecuteOperation().toString().length();
         int inputLength = resultEditText.getText().length();
 
-        int userInput = Integer.parseInt(resultEditText.getText().toString());
+        int userInput;
+        try {
+            userInput = Integer.parseInt(resultEditText.getText().toString());
+        } catch (NumberFormatException ex){
+            return;
+        }
 
         boolean showConfirmation = resultLength <= inputLength;
         boolean valuesAreEqual = (Integer)mCurrentOperationHandler.ExecuteOperation() == userInput;
