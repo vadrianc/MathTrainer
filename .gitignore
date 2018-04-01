@@ -7,3 +7,5 @@
 /captures
 *.iml
 *.apk
+.idea/caches/build_file_checksums.ser
+.idea/codeStyles/Project.xml
